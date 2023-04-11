@@ -1935,7 +1935,6 @@ input, select, textarea {
 			top: 2em;
 			margin: -4em 0 4em -4em;
 			width: auto;
-			height: 150px;
 		}
 
 /* Icons */
@@ -2377,6 +2376,7 @@ input, select, textarea {
 					max-width: 32em;
 					margin-left: auto !important;
 					margin-right: auto !important;
+					height: 500px;
 				}
 
 		/* Wrappers */

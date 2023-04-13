@@ -2378,6 +2378,7 @@ input, select, textarea {
 					max-width: 32em;
 					margin-left: auto !important;
 					margin-right: auto !important;
+					height: 40em;
 				}
 
 		/* Wrappers */

@@ -2183,7 +2183,7 @@ input, select, textarea {
 					max-width: 32em;
 					margin-left: auto !important;
 					margin-right: auto !important;
-					min-height: 40em;
+					min-height: 500px;
 				}
 
 		/* Wrappers */

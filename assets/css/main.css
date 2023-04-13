@@ -1781,6 +1781,10 @@ input, select, textarea {
 			width: auto;
 		}
 
+		#portfolio .box.style2 {
+			min-height: 500px;
+		}
+
 /* Icons */
 
 	.icon {

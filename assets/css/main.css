@@ -2003,7 +2003,6 @@ input, select, textarea {
 		.wrapper.style2 {
 			background-color: #fafafa;
 			text-shadow: 1px 1px 0px #fff;
-			height: 40em;
 		}
 
 		.wrapper.style3 {
@@ -2379,6 +2378,7 @@ input, select, textarea {
 					max-width: 32em;
 					margin-left: auto !important;
 					margin-right: auto !important;
+					height: 500px;
 				}
 
 		/* Wrappers */

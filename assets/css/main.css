@@ -2183,6 +2183,9 @@ input, select, textarea {
 					max-width: 32em;
 					margin-left: auto !important;
 					margin-right: auto !important;
+				}
+
+				#portfolio .box.style2 {
 					min-height: 500px;
 				}
 

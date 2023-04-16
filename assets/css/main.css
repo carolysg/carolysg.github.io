@@ -2197,6 +2197,9 @@ input, select, textarea {
 					min-height: auto;
 				}
 
+				#work .box.style2 {
+					min-height: auto;
+
 		/* Wrappers */
 
 			.wrapper {

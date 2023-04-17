@@ -220,6 +220,10 @@ input, select, textarea {
 		footer > p {
 			font-size: 1.25em;
 		}
+	
+	.small-font {
+		font-size: 0.6em;
+	}
 
 /* Container */
 

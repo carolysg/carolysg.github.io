@@ -69,11 +69,27 @@ MAIN
 			<br>
 			<p>
 				O primeiro passo foi importar as bibliotecas necessárias, abrir o arquivo CSV e verificar como estavam os dados.
-				<img src="images\projetos\03_01.png">
 			</p>
+			<img src="images\projetos\03_01.png">
 			<p>
-				 Freemium non-disclosure agreement lean startup bootstrapping holy grail ramen MVP iteration accelerator. Strategy market ramen leverage paradigm shift seed round entrepreneur crowdfunding social proof angel investor partner network virality.
+				Alguns tratamentos realizados nessa etapa inicial foram:
+				<ul>
+					<li>Remoção da primeira coluna do dataset</li>
+					<li>Verificação dos tipos de variáveis</li>
+					<li>Tratamento de valores numéricos nulos (bill_length_mm, bill_depth_mm, flipper_length_mm e body_mass_g): os valores faltantes foram preenchidos com os valores médios dos pinguins da mesma espécie</li>
+					<li>Tratamento de valores nulos da categoria sex: aplicação de um modelo de árvore de decisão para prever o sexo dos pinguins a partir das outras variáveis</li>
+				</ul>
+				Com a base de dados tratada, iniciou-se o processo de análise exploratória dos dados.
 			</p>
+			<div>
+				<h2>Análise exploratória</h2>
+			</div>
+			<br>
+			<p>
+				O primeiro passo foi verificar as medidas descritivas das variáveis numéricas:
+			</p>
+			<img src="images\projetos\03_02.png">
+			
 		</article>
 	</div>
 </div>

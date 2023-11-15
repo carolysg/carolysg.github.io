@@ -88,7 +88,23 @@ MAIN
 				Antes de iniciar as análises de fato, verificou-se a quantidade de dados faltantes no dataframe.
 			</p>
 			<img src="images\projetos\02_05.png">
-			
+			<p>
+				O tratamento de valores nulos seguiu a seguinte lógica:
+				<ul>
+					<li>Para as colunas de ativos (Ativo01 até Ativo07), substituímos os valores faltantes por zero, já que um investimento de R$ 0,00 é a mesma coisa que não colocar nenhum valor no ativo.</li>
+					<li>Para as notas (Nota1 e Nota2), quando pelo menos uma das notas foi dada, adicionamos as notas que foram dadas na outra amostragem pelo mesmo participante.</li>
+					<li>Quando as duas notas eram faltantes, o valor foi preenchido com a média de cada uma das notas (das outras pessoas).</li>
+				</ul>
+				Dessa forma, todos os valores nulos foram preenchidos.
+			</p>
+			<img src="images\projetos\02_06.png">
+			<div>
+				<h2>Tratamento e manipulação de dados e análise exploratória</h2>
+			</div>
+			<br>
+			<p>
+				
+			</p>
 		</article>
 	</div>
 </div>

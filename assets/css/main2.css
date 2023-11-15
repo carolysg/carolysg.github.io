@@ -12,7 +12,7 @@
   box-sizing: border-box; }
 
 html {
-  font-family: sans-serif;
+  font-family: sans;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -115,7 +115,7 @@ img {
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Source Sans Pro", "Segoe UI", "Helvetica Neue", "Arial";
+  --font-family-sans: "Source Sans Pro", "Segoe UI", "Helvetica Neue", "Arial";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
 
 *,
@@ -124,7 +124,7 @@ img {
   box-sizing: border-box; }
 
 html {
-  font-family: sans-serif;
+  font-family: sans;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -4440,7 +4440,7 @@ img {
   max-width: 100%; }
 
 article {
-  font-family: "sans-serif", "Georgia";
+  font-family: "sans", "Georgia";
   font-size: 20px;
   line-height: 1.7; }
   article p, article pre, article figure, article img, article blockquote, article iframed, article embed {

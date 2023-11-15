@@ -4440,7 +4440,7 @@ img {
   max-width: 100%; }
 
 article {
-  font-family: "sans", "Georgia";
+  font-family: inherit;
   font-size: 20px;
   line-height: 1.7; }
   article p, article pre, article figure, article img, article blockquote, article iframed, article embed {
@@ -4452,7 +4452,7 @@ article {
     position: relative; }
   article blockquote:before {
     content: "“";
-    font-family: Georgia;
+    font-family: inherit;
     font-size: 8rem;
     margin: -1rem 2rem 0 -3.9rem;
     position: absolute;

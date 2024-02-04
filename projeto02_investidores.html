@@ -99,15 +99,56 @@ MAIN
 				Dessa forma, todos os valores nulos foram preenchidos.
 			</p>
 			<img src="images\projetos\02_06.png">
+			<br>
 			<div>
 				<h2>Manipulação de dados e análise exploratória</h2>
 			</div>
 			<br>
 			<p>
-				Descrição das variáveis numéricas:
+				Para entender melhor o comportamento dos dados, uma descrição das variáveis numéricas foi realizada:
 			</p>
 			<img src="images\projetos\02_07.png">
-
+			<p>
+				Após todas as alterações realizadas, o dataframe final ficou com a seguinte estrutura:
+			</p>
+			<img src="images\projetos\02_08.png">
+			<p>
+				A partir daqui, algumas manipulações foram feitas com o intuito de explorar os dados e melhorar seu entendimento:
+				<ul>
+					<li>Criação da coluna "Total" com a soma do valor de todos os ativos por investidor.</li>
+					<li>Criação da coluna "Média" com a média das notas 1 e 2.</li>
+					<li>Criação da coluna "Domínio" com o domínio do e-mail de cada investidor.</li>
+					<li>Alteração da coluna "Salário" para "Renda", alterando o tipo da coluna para numérica.</li>
+					<li>Alteração dos valores da coluna "Sexo" para "Masculino" e "Feminino".</li>
+				</ul>
+			</p>
+			<img src="images\projetos\02_09.png">
+			<p>
+				A coluna "Média" foi então transformada em número inteiro e uma nova coluna "NPS" foi criada. Essa coluna mostra se o investidor é promotor, neutro ou detrator, de acordo com a seguinte regra:
+				<ul>
+					<li>Promotor: média das notas maior ou igual a 80.</li>
+					<li>Neutro: média das notas entre 50 e 79.</li>
+					<li>Detrator: média das notas inferior a 50.</li>
+				</ul>
+			</p>
+			<img src="images\projetos\02_10.png">
+			<br>
+			<div>
+				<h2>Análise dos dados</h2>
+			</div>
+			<br>
+			<p>
+				Com o intuito de realizar uma análise dos dados, algumas perguntas foram respondidas:
+			</p>
+			<p>
+				<li>Qual o total investido em cada ativo?</li>
+			</p>
+			<img src="images\projetos\02_11.png">
+			<p>
+				<li>Qual o menor valor investido em cada ativo?</li>
+				Para os ativos 1, 2, 3, 4, 5 e 6, o menor valor investido foi de R$ 0. O ativo 7, por sua vez, teve como menor valor investido R$ 462,93.
+			</p>
+			<img src="images\projetos\02_12.png">
 		</article>
 	</div>
 </div>

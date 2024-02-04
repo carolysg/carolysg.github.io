@@ -131,7 +131,25 @@ MAIN
 			</div>
 			<br>
 			<p>
-				
+				Da mesma forma que para a cloud function de processamento dos dados, as cloud functions para upload dos dados no BigQuery eram ativadas assim que um arquivo fosse carregado nas respectivas pastas.
+				As functions <code>upload_forecast_sao_carlos_weather</code> e <code>upload_real_sao_carlos_weather</code> iniciavam da mesma maneira que a function anterior: 
+				realizando a verificação do objeto que foi salvo no bucket. Caso o objeto tivesse o prefixo correto, o upload dos dados no BigQuery era iniciado.
+			</p>
+			<p>
+				Ambas as tabelas no BigQuery, <code>tempo_real</code> e <code>tempo_forecast</code>, foram criadas já com o schema predefinido. 
+				Além disso, foram criadas com a configuração de <code>WRITE_APPEND</code>, de forma que os dados fossem sempre acrescentados ao final da tabela em questão.
+				Dessa forma, as tabelas nunca seriam substituídas, mas sempre acrescidas de uma ou mais linhas por dia.
+			</p>
+			<img src="images\projetos\05_08.png">
+			<img src="images\projetos\05_09.png">
+			<br>
+			<br>
+			<div>
+				<h2>Tabelas no BigQuery</h2>
+			</div>
+			<br>
+			<p>
+				Por fim, 
 			</p>
 		</article>
 	</div>

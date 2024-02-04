@@ -110,6 +110,27 @@ MAIN
 			</p>
 			<img src="images\projetos\05_05.png">
 			<p>
+				As transformações realizadas foram:
+				<ul>
+					<li>Para a coluna <code>wind_speedy</code>, foram extraídos apenas os valores numéricos da velocidade do vento, removendo os caracteres indicando <code>km/h</code>.</li>
+					<li>Os tipos das colunas foram alterados de forma a facilitar a posterior manipulação desses dados.</li>
+					<li>A coluna <code>date</code> do dataframe de previsão foi formatada corretamente.</li>
+					<li>As colunas <code>date</code> e <code>time</code> do dataframe de clima atual foram mescladas em uma única coluna <code>datetime</code> e depois dropadas.</li>
+				</ul>
+			</p>
+			<img src="images\projetos\05_06.png">
+			<p>
+				Após realizar todas essas transformações, os dataframes foram salvos em arquivos CSV distintos, um para os dados sobre o clima atual e outro para os dados de previsão.
+				Esses arquivos foram salvos na pasta <code>silver</code> do mesmo bucket, separados nas pastas <code>forecast</code> e <code>real</code>.
+			</p>
+			<img src="images\projetos\05_07.png">
+			<br>
+			<br>
+			<div>
+				<h2>Upload dos dados no BigQuery</h2>
+			</div>
+			<br>
+			<p>
 				
 			</p>
 		</article>

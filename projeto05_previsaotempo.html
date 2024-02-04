@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8"/>
-	<title>Projeto - Pinguins</title>
+	<title>Projeto - API HG Weather</title>
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Source+Sans+Pro:400,700" rel="stylesheet">
 	<!-- Font Awesome Icons -->
@@ -45,7 +45,7 @@ MAIN
 			<p>
 				Este projeto foi inteiramente realizado na Google Cloud Plataform (GCP) e consiste das seguintes etapas:
 				<ul>
-					<li>Coleta de dados utilizando a API HG Weather.</li>
+					<li>Coleta de dados do clima da cidade de São Carlos (dados atuais e de previsão) utilizando a API HG Weather.</li>
 					<li>Tratamento de dados da camada bronze para a silver.</li>
 					<li>Upload dos dados no BigQuery.</li>
 				</ul>
@@ -54,12 +54,39 @@ MAIN
 				A arquitetura do projeto é apresentada no fluxograma abaixo:
 			</p>
 			<img src="images\projetos\05_01.png">
+			<p>
+				Vale ressaltar que, como o projeto foi realizado de forma totalmente gratuita (utilizando o período de teste de 90 dias da GCP), as cloud functions permaneceram rodando apenas entre o período de 15/10/2023 a 14/01/2024.
+			</p>
+			<br>
+			<br>
 			<div>
 				<h2>Etapas iniciais</h2>
 			</div>
 			<br>
 			<p>
-				XXXXX
+				O primeiro passo do projeto foi entender o funcionamento da API HG Weather, a qual seria utilizada para coletar os dados do clima da cidade de São Carlos.
+				A partir da documentação foi possível verificar que cada cidade possui um código WOEID e que esse tipo de consulta não necessitava de chave da API.
+				Foi necessário apenas buscar pela cidade requerida e, então, o link para utilização da API foi gerado automaticamente.
+			</p>
+			<img src="images\projetos\05_02.png">
+			<p>
+				Ao fazer uma requisição utilizando o link da API, um JSON é retornado com dois tipos de informações:
+				<ul>
+					<li>Dados sobre o clima atual: data, horário, temperatura, descrição do tempo, umidade, velocidade do vento, entre outras informações.</li>
+					<li>Dados da previsão do tempo dos próximos 9 dias: data, dia da semana, temperaturas máxima e mínima, probabilidade de chuva, entre outras.</li>
+				</ul>
+			</p>
+			<p>
+				Dessa forma, após entender o formato dos dados, iniciou-se a etapa de extração.
+			</p>
+			<br>
+			<br>
+			<div>
+				<h2>Extração e ingestão dos dados</h2>
+			</div>
+			<br>
+			<p>
+				
 			</p>
 		</article>
 	</div>

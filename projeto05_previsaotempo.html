@@ -77,9 +77,7 @@ MAIN
 				</ul>
 			</p>
 			<p>
-				Um exemplo de arquivo JSON obtido pode ser visualizado neste link: <a small href="https://github.com/carolysg/api-weather/blob/main/sao-carlos-2023-10-15-15-30.json" target="_blank">arquivo.json</a>
-			</p>
-			<p>
+				Um exemplo de arquivo JSON obtido pode ser visualizado neste link: <a small href="https://github.com/carolysg/api-weather/blob/main/sao-carlos-2023-10-15-15-30.json" target="_blank">arquivo.json</a><br>
 				Dessa forma, após entender o formato dos dados, iniciou-se a etapa de extração.
 			</p>
 			<br>
@@ -90,8 +88,18 @@ MAIN
 			<br>
 			<p>
 				A cloud function <code>get_sao_carlos_weather</code>, escrita em Python, foi responsável por fazer a requisição dos dados e salvar o arquivo JSON no bucket <code>dados-api</code> dentro da pasta <code>bronze</code>.
+				Esta function era ativada uma vez ao dia, por meio de um cloud scheduler. Para cada dia, a function salvava o arquivo JSON com a respectiva data.
 			</p>
 			<img src="images\projetos\05_03.png">
+			<br>
+			<br>
+			<div>
+				<h2>Processamento dos dados</h2>
+			</div>
+			<br>
+			<p>
+				
+			</p>
 		</article>
 	</div>
 </div>

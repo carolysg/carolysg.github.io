@@ -98,6 +98,18 @@ MAIN
 			</div>
 			<br>
 			<p>
+				A arquitetura do projeto é toda baseada em eventos. Assim que um arquivo era carregado na pasta <code>bronze</code>, um tópico Pub/Sub era ativado e triggava a próxima cloud function. <br>
+				Todas as transformações necessárias foram realizadas pela cloud function <code>process_sao_carlos_weather</code>. 
+				Essa function realizava, antes de tudo, a verificação do objeto que foi salvo no bucket.
+				Caso o objeto tivesse o prefixo correto, o processamento dos dados era iniciado.
+			</p>
+			<img src="images\projetos\05_04.png">
+			<p>
+				Inicialmente, as informações contidas no arquivo JSON foram divididas em dois dataframes, um para os dados sobre o clima atual e outro para os dados de previsão. 
+				Foram selecionadas apenas algumas das informações presentes no arquivo JSON (aquelas consideradas as mais relevantes).
+			</p>
+			<img src="images\projetos\05_05.png">
+			<p>
 				
 			</p>
 		</article>

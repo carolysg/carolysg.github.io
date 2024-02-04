@@ -77,6 +77,7 @@ MAIN
 				</ul>
 			</p>
 			<p>
+				Um exemplo de arquivo JSON obtido pode ser visualizado neste link: <a small href="https://github.com/carolysg/api-weather/blob/main/sao-carlos-2023-10-15-15-30.json" target="_blank">arquivo.json</a>
 				Dessa forma, após entender o formato dos dados, iniciou-se a etapa de extração.
 			</p>
 			<br>
@@ -86,7 +87,34 @@ MAIN
 			</div>
 			<br>
 			<p>
-				
+				A cloud function <code>get_sao_carlos_weather</code>, escrita em Python, foi responsável por fazer a requisição dos dados e salvar o arquivo JSON no bucket <code>dados-api</code> dentro da pasta <code>bronze</code>.
+			</p>
+			<p>
+				<code>
+					import functions_framework
+					import pandas as pd
+					import requests
+					import json
+					from datetime import datetime
+					from google.cloud import storage
+
+					# Triggered from a message on a Cloud Pub/Sub topic.
+					@functions_framework.cloud_event
+					def get_sao_carlos_weather(cloud_event=None):
+
+						today = datetime.now()
+						today = today.strftime('%Y-%m-%d-%H-%M')
+						bucket_name = 'dados-api'
+						destination_blob_name = f'bronze/sao-carlos-{today}.json'
+
+						sao_carlos = requests.get('https://api.hgbrasil.com/weather?woeid=449704')
+						json_data = sao_carlos.text
+
+						storage_client = storage.Client()
+						bucket = storage_client.get_bucket(bucket_name)
+						blob = bucket.blob(destination_blob_name)
+						blob.upload_from_string(json_data)
+				</code>
 			</p>
 		</article>
 	</div>

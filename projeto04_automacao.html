@@ -1,0 +1,225 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<!-- COLOCAR O NOME DO PROJETO AQUI -->
+	<title>Projeto Automação Web com Selenium</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="icon" type="image/x-icon" href="/images/icons/favicon.ico">
+	<link rel="stylesheet" href="assets/css/main.css" />
+
+	<link rel="stylesheet" href="assets/css/prism.css" />
+</head>
+
+<body class="is-preload">
+	<script>
+		document.body.classList.add('fade');
+
+		document.addEventListener("DOMContentLoaded", () => {
+			window.setTimeout(function () {
+				document.body.classList.remove('fade');
+			}, 230);
+		});
+	</script>
+	<!-- Header -->
+	<header id="header">
+		<div class="bg-header"></div>
+		<div class="inner">
+			<a href="#" class="image avatar"><img src="images/img01.png" alt="" /></a>
+			<ul class="sidebar">
+				<li><a href="index.html" class="sidebar-link">Início</a></li>
+				<li><a href="sobre.html" class="sidebar-link">Sobre mim</a></li>
+				<li><a href="portfolio.html" class="sidebar-link">Projetos</a></li>
+				<li><a href="certificados.html" class="sidebar-link">Certificados</a></li>
+			</ul>
+		</div>
+	</header>
+
+	<!-- Main -->
+	<div id="main">
+		<section id="projeto-header">
+			<header class="major">
+				<div class="col-12"></div>
+				<h2>Projeto Automação Web com Selenium</h2>
+			</header>
+			<ul class="actions fit small">
+				<li>
+					<a href="https://github.com/carolysg/auto-forms-selenium" class="button icon brands small fit fa-github solid" target="_blank">Repositório do Github</a>
+				</li>
+				<li>
+					<a href="https://www.saucedemo.com/" class="button fit small"  target="_blank">Site saucedemo</a>
+				</li>
+			</ul>
+		</section>
+		<!-- BLOCO DE CONTEUDO -->
+		<section id="sobre">
+			<h2>Sobre o projeto</h2>
+			<p><span class="image right"><img src="images/thumbs_proj/automacao.jpg" alt=""></span>
+				Esse projeto consiste em uma simulação de compras no site Saucedemo.
+				O projeto foi executando utilizando Python e Selenium.
+			</p>
+			<p>
+				O principal objetivo desse projeto foi aprender a utilizar o Selenium para realizar diferentes tarefas.
+			</p>
+		</br>
+			<h2>Definição de regras</h2>
+			<p>O site permite utilizar 6 usuários e uma única senha. Desses 6 usernames possíveis, 
+				apenas 1 não apresenta problemas ao logar e possibilita a compra de forma fluida. 
+				O código foi criado de forma que o username fosse escolhido aleatoriamente, da seguinte forma:
+				<ul>
+					<li>Se o usuário for o "problem_user", "performance_glitch_user", "error_user" ou o "visual_user", 
+						o programa faz o login mas logo em seguida realiza o logout pela barra lateral esquerda, 
+						escolhendo novamente outro username a ser testado;</li>
+					<li>Se o usuário for o "locked_out_user", o programa tenta fazer o login mas é impossibilitado e 
+						a página é recarregada para remover os valores dos campos, escolhendo novamente outro username a ser testado;</li>
+					<li>Se o usuário for o "standard_user", o programa realiza a compra normalmente.</li>
+				</ul>
+				Ou seja, o programa só finaliza quando consegue utilizar o username "standard_user" e finalizar a compra. 
+				A quantidade de itens a serem adicionados no carrinho é escolhida de forma aleatória, e os itens a serem escolhidos também.
+			</p>
+			<h2>Apresentação dos códigos</h2>
+			<p>O primeiro passo para realizar a simulação de compra no site é criar o navegador e acessar a página web:</p>
+			<pre><code class="language-python">
+# importando as bibliotecas
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.alert import Alert
+import time
+import random
+
+# criando o navegador
+servico = Service(ChromeDriverManager().install())
+navegador = webdriver.Chrome(service=servico)
+
+# acessando a página
+navegador.get('https://www.saucedemo.com/')
+			</code></pre></br>
+			<p>
+				O próprio site do Saucedemo fornece os possíveis usuários e a senha de acesso.
+				Dessa forma, faz-se uma coleta desses valores, que são armazenados em listas:
+			</p>
+			<pre><code class="language-python">
+# coletando possíveis usuários
+texto_usernames = navegador.find_element(By.ID, 'login_credentials').text
+linhas = texto_usernames.split('\n')
+usernames = linhas[1:]
+usernames
+
+# coletando possíveis senhas 
+texto_senhas = navegador.find_element(By.CLASS_NAME, 'login_password').text
+linhas2 = texto_senhas.split('\n')
+senhas = linhas2[1:]
+senhas
+			</code></pre></br>
+			<p>
+				Seleciona-se o usuário aleatoriamente e realiza-se o login com esse usuário:
+			</p>
+			<pre><code class="language-python">
+# preenchendo usuário e senha
+username_aleatorio = random.choice(usernames)
+senha_aleatoria = random.choice(senhas)
+navegador.find_element(By.ID, 'user-name').send_keys(username_aleatorio)
+navegador.find_element(By.ID, 'password').send_keys(senha_aleatoria)
+
+# clicando no botão de login
+navegador.find_element(By.ID, 'login-button').click()
+			</code></pre></br>
+			<p>
+				Enquanto o usuário "standard_user" não é selecionado, o programa segue rodando o loop:
+			</p>
+			<pre><code class="language-python">
+while True:
+if username_aleatorio == 'locked_out_user':
+	navegador.get('https://www.saucedemo.com/')
+	username_aleatorio = random.choice(usernames)
+	senha_aleatoria = random.choice(senhas)
+	navegador.find_element(By.ID, 'user-name').send_keys(username_aleatorio)
+	navegador.find_element(By.ID, 'password').send_keys(senha_aleatoria)
+	navegador.find_element(By.ID, 'login-button').click()
+elif username_aleatorio in ['problem_user', 'performance_glitch_user', 'error_user', 'visual_user']:
+	navegador.find_element(By.ID, 'react-burger-menu-btn').click()
+	time.sleep(1)
+	navegador.find_element(By.ID, 'logout_sidebar_link').click()
+	username_aleatorio = random.choice(usernames)
+	senha_aleatoria = random.choice(senhas)
+	navegador.find_element(By.ID, 'user-name').send_keys(username_aleatorio)
+	navegador.find_element(By.ID, 'password').send_keys(senha_aleatoria)
+	navegador.find_element(By.ID, 'login-button').click()
+else:
+	break
+			</code></pre></br>
+			<p>
+				Após logar com usuário padrão, escolhe-se aleatoriamente os produtos a serem colocados no carrinho:
+			</p>
+			<pre><code class="language-python">
+lista_itens = navegador.find_elements(By.CLASS_NAME, 'btn.btn_primary.btn_small.btn_inventory')
+num_itens = random.randint(1, len(lista_itens))
+itens = random.sample(lista_itens, num_itens)
+
+for item in itens:
+	item.click()
+			</code></pre></br>
+			<p>
+				Finalmente, é feito o checkout, o preenchimento dos dados e a finalização da compra:
+			</p>
+			<pre><code class="language-python">
+# entrando no carrinho e fazendo o checkout
+navegador.find_element(By.CLASS_NAME, 'shopping_cart_link').click()
+navegador.find_element(By.ID, 'checkout').click()
+
+# preenchendo os dados do usuário
+navegador.find_element(By.ID, 'first-name').send_keys('primeiro nome')
+navegador.find_element(By.ID, 'last-name').send_keys('sobrenome')
+navegador.find_element(By.ID, 'postal-code').send_keys('123123123')
+navegador.find_element(By.ID, 'continue').click()
+
+# finalizando a compra e retornando para o menu de produtos
+navegador.find_element(By.ID, 'finish').click()
+navegador.find_element(By.ID, 'back-to-products').click()
+			</code></pre></br>
+
+			<h2>Simulação</h2>
+			<p>O vídeo abaixo apresenta uma simulação da compra no site, de forma automatizada:</p>
+			<video src="images/projetos/automacao-selenium/video.mp4" width="672" height="378" controls></video>
+
+		</section>
+		<!-- FIM DO BLOCO DE CONTEUDO -->
+		<ul class="actions">
+			<li><a href="portfolio.html" class="button icon solid fa-arrow-left">Voltar</a></li>
+		</ul>
+	</div>
+
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="icons">
+				<li><a href="https://www.linkedin.com/in/carolyumi" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+				<li><a href="https://github.com/carolysg" class="icon brands fa-github"><span class="label">Github</span></a></li>
+				<li><a href="mailto:carolinagoshima@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
+			<ul class="copyright">
+				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</div>
+	</footer>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/prism.js"></script>
+
+</body>
+
+</html>

@@ -1,135 +1,259 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
 <head>
-	<meta charset="utf-8"/>
-	<title>Projeto - API HG Weather</title>
-	<!-- Google Font -->
-	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Source+Sans+Pro:400,700" rel="stylesheet">
-	<!-- Font Awesome Icons -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-	<!-- Main CSS -->
-	<link href="./assets/css/main2.css" rel="stylesheet"/>
+	<title>Projeto API HG Weather</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="icon" type="image/x-icon" href="/images/icons/favicon.ico">
+	<link rel="stylesheet" href="assets/css/main.css" />
+
+	<link rel="stylesheet" href="assets/css/prism.css" />
 </head>
-<body>   
-<!--------------------------------------
-HEADER
---------------------------------------->
-<div class="container">
-	<div class="jumbotron jumbotron-fluid mb-3 pl-0 pt-0 pb-0 bg-white position-relative">
-		<div class="h-100 tofront">
-			<div class="row justify-content-between">
-				<div class="col-md-6 pt-6 pb-6 pr-6 align-self-center">
-					<h1>Coleta de dados via API HG Weather utilizando GCP</h1>
-					<a small href="https://github.com/carolysg/api-weather/tree/main" target="_blank">Link do repositório do Github</a> <br>
-					<a small href="https://hgbrasil.com/status/weather" target="_blank">Link do site da API</a>
-				</div>
-				<div class="col-md-6 pr-0">
-					<img src="images/projeto05.jpg">
-				</div>
-			</div>
+
+<body class="is-preload">
+	<script>
+		document.body.classList.add('fade');
+
+		document.addEventListener("DOMContentLoaded", () => {
+			window.setTimeout(function () {
+				document.body.classList.remove('fade');
+			}, 230);
+		});
+	</script>
+	<!-- Header -->
+	<header id="header">
+		<div class="bg-header"></div>
+		<div class="inner">
+			<a href="#" class="image avatar"><img src="images/img01.png" alt="" /></a>
+			<ul class="sidebar">
+				<li><a href="index.html" class="sidebar-link">Início</a></li>
+				<li><a href="sobre.html" class="sidebar-link">Sobre mim</a></li>
+				<li><a href="portfolio.html" class="sidebar-link">Projetos</a></li>
+				<li><a href="certificados.html" class="sidebar-link">Certificados</a></li>
+			</ul>
 		</div>
-	</div>
-</div>
-<!-- End Header -->
-    
-<!--------------------------------------
-MAIN
---------------------------------------->
-<div class="container pt-4 pb-4">
-	<div class="row justify-content-center">
-		<article class="article-post">
-			<div>
-				<h2>Sobre o projeto</h2>
-			</div>
-			<br>
-			<p>
+	</header>
+
+	<!-- Main -->
+	<div id="main">
+		<section id="projeto-header">
+			<header class="major">
+				<div class="col-12"></div>
+				<h2>Coleta de dados via API HG Weather utilizando GCP</h2>
+			</header>
+			<ul class="actions fit small">
+				<li>
+					<a href="https://github.com/carolysg/api-weather/tree/main"
+						class="button icon brands small fit fa-github solid" target="_blank">Repositório do Github</a>
+				</li>
+				<li>
+					<a href="https://hgbrasil.com/status/weather" class="button fit small" target="_blank">Site da API</a>
+				</li>
+			</ul>
+		</section>
+		<!-- Conteúdo vai aqui -->
+		<section id="sobre">
+			<!-- Sobre o projeto -->
+			<h2>Sobre o projeto</h2>
+			<p> <span class="image right"><img src="images/thumbs_proj/apihg.jpg" alt=""></span>
 				Este projeto foi inteiramente realizado na Google Cloud Plataform (GCP) e consiste das seguintes etapas:
-				<ul>
-					<li>Coleta de dados do clima da cidade de São Carlos (dados atuais e de previsão) utilizando a API HG Weather.</li>
-					<li>Tratamento de dados da camada bronze para a silver.</li>
-					<li>Upload dos dados no BigQuery.</li>
-				</ul>
 			</p>
-			<p>
-				A arquitetura do projeto é apresentada no fluxograma abaixo:
+			<ul>
+				<li>Coleta de dados do clima da cidade de São Carlos (dados atuais e de previsão) utilizando a API HG
+					Weather.</li>
+				<li>Tratamento de dados da camada bronze para a silver.</li>
+				<li>Upload dos dados no BigQuery.</li>
+			</ul>
+			<p> A arquitetura do projeto é apresentada no fluxograma abaixo: </p>
+			<span class="image fit no-overlay"><img src="images/projetos/projeto-api/05_01.png" alt=""></span>
+			<p> Vale ressaltar que, como o projeto foi realizado de forma totalmente gratuita (utilizando o período de
+				teste de 90 dias da GCP), as cloud functions permaneceram rodando apenas entre o período de 15/10/2023 a
+				14/01/2024. </p>
+
+			<!-- Etapas iniciais -->
+			<h2>Etapas iniciais</h2>
+			<p><span class="image right right-bigger no-overlay"><img src="images/projetos/projeto-api/05_02.png"
+						alt="" /></span>O primeiro passo do
+				projeto foi entender o funcionamento da API HG Weather, a qual seria utilizada
+				para coletar os dados do clima da cidade de São Carlos. A partir da documentação foi possível
+				verificar que cada cidade possui um código WOEID e que esse tipo de consulta não necessitava de
+				chave da API. Foi necessário apenas buscar pela cidade requerida e, então, o link para utilização da
+				API foi gerado automaticamente.</p>
+			<p>Ao fazer uma requisição utilizando o link da API, um JSON é retornado com dois tipos de informações:
 			</p>
-			<img src="images\projetos\05_01.png">
-			<p>
-				Vale ressaltar que, como o projeto foi realizado de forma totalmente gratuita (utilizando o período de teste de 90 dias da GCP), as cloud functions permaneceram rodando apenas entre o período de 15/10/2023 a 14/01/2024.
+			<ul>
+				<li>Dados sobre o clima atual: data, horário, temperatura, descrição do tempo, umidade, velocidade
+					do
+					vento, entre outras informações.</li>
+
+				<li>Dados da previsão do tempo dos próximos 9 dias: data, dia da semana, temperaturas máxima e
+					mínima,
+					probabilidade de chuva, entre outras.</li>
+			</ul>
+
+			<p>Um exemplo de arquivo JSON obtido pode ser visualizado neste link: <a
+					href="https://github.com/carolysg/api-weather/blob/main/sao-carlos-2023-10-15-15-30.json" target="_blank">arquivo.json</a>
 			</p>
-			<br>
-			<br>
-			<div>
-				<h2>Etapas iniciais</h2>
-			</div>
-			<br>
-			<p>
-				O primeiro passo do projeto foi entender o funcionamento da API HG Weather, a qual seria utilizada para coletar os dados do clima da cidade de São Carlos.
-				A partir da documentação foi possível verificar que cada cidade possui um código WOEID e que esse tipo de consulta não necessitava de chave da API.
-				Foi necessário apenas buscar pela cidade requerida e, então, o link para utilização da API foi gerado automaticamente.
-			</p>
-			<img src="images\projetos\05_02.png">
-			<p>
-				Ao fazer uma requisição utilizando o link da API, um JSON é retornado com dois tipos de informações:
-				<ul>
-					<li>Dados sobre o clima atual: data, horário, temperatura, descrição do tempo, umidade, velocidade do vento, entre outras informações.</li>
-					<li>Dados da previsão do tempo dos próximos 9 dias: data, dia da semana, temperaturas máxima e mínima, probabilidade de chuva, entre outras.</li>
-				</ul>
-			</p>
-			<p>
-				Um exemplo de arquivo JSON obtido pode ser visualizado neste link: <a small href="https://github.com/carolysg/api-weather/blob/main/sao-carlos-2023-10-15-15-30.json" target="_blank">arquivo.json</a><br>
-				Dessa forma, após entender o formato dos dados, iniciou-se a etapa de extração.
-			</p>
-			<br>
-			<br>
-			<div>
-				<h2>Extração e ingestão dos dados</h2>
-			</div>
-			<br>
-			<p>
-				A cloud function <code>get_sao_carlos_weather</code>, escrita em Python, foi responsável por fazer a requisição dos dados e salvar o arquivo JSON no bucket <code>dados-api</code> dentro da pasta <code>bronze</code>.
-				Esta function era ativada uma vez ao dia, por meio de um cloud scheduler. Para cada dia, a function salvava o arquivo JSON com a respectiva data.
-			</p>
-			<img src="images\projetos\05_03.png">
-			<br>
-			<br>
-			<div>
-				<h2>Processamento dos dados</h2>
-			</div>
-			<br>
-			<p>
-				A arquitetura do projeto é toda baseada em eventos. Assim que um arquivo era carregado na pasta <code>bronze</code>, um tópico Pub/Sub era ativado e triggava a próxima cloud function. <br>
-				Todas as transformações necessárias foram realizadas pela cloud function <code>process_sao_carlos_weather</code>. 
-				Essa function realizava, antes de tudo, a verificação do objeto que foi salvo no bucket.
-				Caso o objeto tivesse o prefixo correto, o processamento dos dados era iniciado.
-			</p>
-			<img src="images\projetos\05_04.png">
-			<p>
-				Inicialmente, as informações contidas no arquivo JSON foram divididas em dois dataframes, um para os dados sobre o clima atual e outro para os dados de previsão. 
-				Foram selecionadas apenas algumas das informações presentes no arquivo JSON (aquelas consideradas as mais relevantes).
-			</p>
-			<img src="images\projetos\05_05.png">
-			<p>
-				As transformações realizadas foram:
-				<ul>
-					<li>Para a coluna <code>wind_speedy</code>, foram extraídos apenas os valores numéricos da velocidade do vento, removendo os caracteres indicando <code>km/h</code>.</li>
-					<li>Os tipos das colunas foram alterados de forma a facilitar a posterior manipulação desses dados.</li>
-					<li>A coluna <code>date</code> do dataframe de previsão foi formatada corretamente.</li>
-					<li>As colunas <code>date</code> e <code>time</code> do dataframe de clima atual foram mescladas em uma única coluna <code>datetime</code> e depois dropadas.</li>
-				</ul>
-			</p>
-			<img src="images\projetos\05_06.png">
-			<p>
-				Após realizar todas essas transformações, os dataframes foram salvos em arquivos CSV distintos, um para os dados sobre o clima atual e outro para os dados de previsão.
-				Esses arquivos foram salvos na pasta <code>silver</code> do mesmo bucket, separados nas pastas <code>forecast</code> e <code>real</code>.
-			</p>
-			<img src="images\projetos\05_07.png">
-			<br>
-			<br>
-			<div>
-				<h2>Upload dos dados no BigQuery</h2>
-			</div>
-			<br>
+			<p>Dessa forma, após entender o formato dos dados, iniciou-se a etapa de extração.</p>
+
+			<!-- Extração e ingestão dos dados -->
+			<h2>Extração e ingestão dos dados</h2>
+			<p>A cloud function get_sao_carlos_weather, escrita em Python, foi responsável por fazer a requisição dos
+				dados e salvar o arquivo JSON no bucket dados-api dentro da pasta bronze. Esta function era ativada uma
+				vez ao dia, por meio de um cloud scheduler. Para cada dia, a function salvava o arquivo JSON com a
+				respectiva data. </p>
+			<pre><code class="language-python">import functions_framework
+import pandas as pd
+import requests
+import json
+from datetime import datetime
+from google.cloud import storage
+					
+# Triggered from a message on a Cloud Pub/Sub topic.
+@functions_framework.cloud_event
+def get_sao_carlos_weather(cloud_event=None):
+					
+	today = datetime.now()
+	today = today.strftime('%Y-%m-%d-%H-%M')
+	bucket_name = 'dados-api'
+	destination_blob_name = f'bronze/sao-carlos-{today}.json'
+						
+	sao_carlos = requests.get('https://api.hgbrasil.com/weather?woeid=449704')
+	json_data = sao_carlos.text
+						
+	storage_client = storage.Client()
+	bucket = storage_client.get_bucket(bucket_name)
+	blob = bucket.blob(destination_blob_name)
+	blob.upload_from_string(json_data)</code></pre>
+
+			<!-- Processamento dos dados -->
+			</br>
+			<h2>Processamento dos dados</h2>
+			<p>A arquitetura do projeto é toda baseada em eventos. Assim que um arquivo era carregado na pasta bronze,
+				um tópico Pub/Sub era ativado e triggava a próxima cloud function. </p>
+			<p>Todas as transformações necessárias foram realizadas pela cloud function process_sao_carlos_weather. Essa
+				function realizava, antes de tudo, a verificação do objeto que foi salvo no bucket. Caso o objeto
+				tivesse o prefixo correto, o processamento dos dados era iniciado. </p>
+			<pre><code class="language-python">
+import functions_framework
+import pandas as pd
+import json
+from datetime import timedelta
+from google.cloud import storage
+				
+# Triggered from a message on a Cloud Pub/Sub topic.
+@functions_framework.cloud_event
+def process_sao_carlos_weather(cloud_event=None):
+				
+	bucket_name = cloud_event.data['message']['attributes']['bucketId']
+	obj = cloud_event.data['message']['attributes']['objectId']
+	uri = 'gs://' + bucket_name + '/' + obj
+					
+	# If for some reason function is triggered with another file abort
+	if 'bronze/sao-carlos' not in obj:
+	print('Not the expected file')
+	return {'Message': 'Not the expected file'}
+
+	storage_client = storage.Client()
+	bucket = storage_client.get_bucket(bucket_name)
+	blob = bucket.blob(obj)
+	json_data = blob.download_as_text()
+	data = json.loads(json_data)				
+			</code></pre>
+			</br>
+			<p>Inicialmente, as informações contidas no arquivo JSON foram divididas em dois dataframes, um para os
+				dados sobre o clima atual e outro para os dados de previsão. Foram selecionadas apenas algumas das
+				informações presentes no arquivo JSON (aquelas consideradas as mais relevantes). </p>
+			<pre><code class="language-python">
+storage_client = storage.Client()
+bucket = storage_client.get_bucket(bucket_name)
+blob = bucket.blob(obj)
+json_data = blob.download_as_text()
+data = json.loads(json_data)
+
+results = data['results']
+forecast = results['forecast']
+
+df_real = pd.DataFrame({
+	'date': [results['date']],
+	'time': [results['time']],
+	'temperature': [results['temp']],
+	'description': [results['description']],
+	'humidity': [results['humidity']],
+	'cloudiness': [results['cloudiness']],
+	'rain': [results['rain']],
+	'wind_speedy': [results['wind_speedy']]
+})
+
+df_forecast = pd.DataFrame({
+	'real_date': results['date'],
+	'date': results['date'],
+	'max_temperature': [item['max'] for item in forecast],
+	'min_temperature': [item['min'] for item in forecast],
+	'cloudiness': [item['cloudiness'] for item in forecast],
+	'rain': [item['rain'] for item in forecast],
+	'rain_probability': [item['rain_probability'] for item in forecast],
+	'wind_speedy': [item['wind_speedy'] for item in forecast],
+	'description': [item['description'] for item in forecast],
+	'condition': [item['condition'] for item in forecast]
+})
+			</code></pre>
+			</br>
+			<p> As transformações realizadas foram: </p>
+			<ul>
+				<li>Para a coluna <code>wind_speedy</code>, foram extraídos apenas os valores numéricos da velocidade do
+					vento, removendo os caracteres indicando <code>km/h</code>.</li>
+				<li>Os tipos das colunas foram alterados de forma a facilitar a posterior manipulação desses dados.</li>
+				<li>A coluna <code>date</code> do dataframe de previsão foi formatada corretamente.</li>
+				<li>As colunas <code>date</code> e <code>time</code> do dataframe de clima atual foram mescladas em uma
+					única coluna <code>datetime</code> e depois dropadas.</li>
+			</ul>
+			<pre><code class="language-python">
+# == wind_speedy ==
+df_real['wind_speedy'] = df_real['wind_speedy'].str.extract(r'(\d+\.\d+)')
+df_forecast['wind_speedy'] = df_forecast['wind_speedy'].str.extract(r'(\d+\.\d+)')
+
+# == types of columns ==
+df_real['datetime'] = pd.to_datetime(df_real['date'] + ' ' + df_real['time'], dayfirst=True)
+df_real['temperature'] = df_real['temperature'].astype(float)
+df_real['humidity'] = df_real['humidity'].astype(float)
+df_real['wind_speedy'] = df_real['wind_speedy'].astype(float)
+df_forecast['real_date'] = pd.to_datetime(df_forecast['real_date'], format='%d/%m/%Y')
+df_forecast['date'] = pd.to_datetime(df_forecast['date'], format='%d/%m/%Y')
+df_forecast['max_temperature'] = df_forecast['max_temperature'].astype(float)
+df_forecast['min_temperature'] = df_forecast['min_temperature'].astype(float)
+df_forecast['rain_probability'] = df_forecast['rain_probability'].astype(float)
+df_forecast['wind_speedy'] = df_forecast['wind_speedy'].astype(float)
+
+# == date ==
+first_date = df_forecast['date'].iloc[0]
+for i in range(len(df_forecast)):
+	df_forecast.loc[i, 'date'] = first_date + timedelta(days=i)
+
+# == drop columns ==
+df_real.drop(columns=['date', 'time'], inplace=True)
+			</code></pre>
+			</br>
+			<p>Após realizar todas essas transformações, os dataframes foram salvos em arquivos CSV distintos, um para
+				os dados sobre o clima atual e outro para os dados de previsão. Esses arquivos foram salvos na pasta
+				silver do mesmo bucket, separados nas pastas forecast e real. </p>
+			<pre><code class="language-python">
+# == save dataframes ==
+name_file = obj.split('/')[-1]
+name_file = name_file.replace('json', 'csv')
+df_real.to_csv(f'gs://{bucket_name}/silver/real/real-{name_file}', index=False)
+df_forecast.to_csv(f'gs://{bucket_name}/silver/forecast/forecast-{name_file}', index=False)
+			</code></pre>
+			</br>
+
+			<!-- Upload dos dados no BigQuery -->
+			<h2>Upload dos dados no BigQuery</h2>
 			<p>
 				Da mesma forma que para a cloud function de processamento dos dados, as cloud functions para upload dos dados no BigQuery eram ativadas assim que um arquivo fosse carregado nas respectivas pastas.
 				As functions <code>upload_forecast_sao_carlos_weather</code> e <code>upload_real_sao_carlos_weather</code> iniciavam da mesma maneira que a function anterior: 
@@ -140,59 +264,139 @@ MAIN
 				Além disso, foram criadas com a configuração de <code>WRITE_APPEND</code>, de forma que os dados fossem sempre acrescentados ao final da tabela em questão.
 				Dessa forma, as tabelas nunca seriam substituídas, mas sempre acrescidas de uma ou mais linhas por dia.
 			</p>
-			<img src="images\projetos\05_08.png">
-			<img src="images\projetos\05_09.png">
-			<br>
-			<br>
-			<div>
-				<h2>Tabelas no BigQuery</h2>
-			</div>
-			<br>
+			<pre><code class="language-python">
+import functions_framework from google.cloud 
+import bigquery 
+import pandas as pd 
+import gcsfs 
+
+# Triggered from a message on a Cloud Pub/Sub topic. 
+@functions_framework.cloud_event 
+def upload_real_sao_carlos_weather(cloud_event=None): 
+	bucket_name = cloud_event.data['message']['attributes']['bucketId'] 
+	obj = cloud_event.data['message']['attributes']['objectId'] 
+	uri = 'gs://' + bucket_name + '/' + obj 
+
+	# If for some reason function is triggered with another file abort 
+	if 'silver/real/real-sao-carlos' not in obj: 
+		print('Not the expected file') 
+		return {'Message': 'Not the expected file'} 
+		
+	table_id = 'previsao-tempo-402114.dados_clima.tempo_real' 
+	df = pd.read_csv(uri) 
+	
+	client = bigquery.Client() 
+	job_config = bigquery.LoadJobConfig( 
+		schema=[ 
+			bigquery.SchemaField('temperature', bigquery.enums.SqlTypeNames.FLOAT), 
+			bigquery.SchemaField('description', bigquery.enums.SqlTypeNames.STRING), 
+			bigquery.SchemaField('humidity', bigquery.enums.SqlTypeNames.FLOAT), 
+			bigquery.SchemaField('cloudiness', bigquery.enums.SqlTypeNames.FLOAT), 
+			bigquery.SchemaField('rain', bigquery.enums.SqlTypeNames.FLOAT), 
+			bigquery.SchemaField('wind_speedy', bigquery.enums.SqlTypeNames.FLOAT, description='km/h'), 
+			bigquery.SchemaField('datetime', bigquery.enums.SqlTypeNames.DATETIME) 
+		], 
+		write_disposition='WRITE_APPEND', 
+		autodetect=False, 
+		source_format=bigquery.SourceFormat.CSV 
+	) 
+		
+	job = client.load_table_from_dataframe(df, table_id, job_config=job_config) 
+		
+	return None
+			</code></pre>
+			</br>
+			<pre><code class="language-python">
+import functions_framework from google.cloud 
+import bigquery 
+import pandas as pd 
+import gcsfs 
+
+# Triggered from a message on a Cloud Pub/Sub topic. 
+@functions_framework.cloud_event 
+def upload_forecast_sao_carlos_weather(cloud_event=None): 
+	bucket_name = cloud_event.data['message']['attributes']['bucketId'] 
+	obj = cloud_event.data['message']['attributes']['objectId'] 
+	uri = 'gs://' + bucket_name + '/' + obj 
+	
+	# If for some reason function is triggered with another file abort 
+	if 'silver/forecast/forecast-sao-carlos' not in obj: 
+		print('Not the expected file') 
+		return {'Message': 'Not the expected file'} 
+	
+	table_id = 'previsao-tempo-402114.dados_clima.tempo_forecast' 
+	df = pd.read_csv(uri) 
+
+	client = bigquery.Client() 
+	job_config = bigquery.LoadJobConfig( 
+		schema=[ 
+			bigquery.SchemaField('real_date', bigquery.enums.SqlTypeNames.DATE), 
+			bigquery.SchemaField('date', bigquery.enums.SqlTypeNames.DATE), 
+			bigquery.SchemaField('max_temperature', bigquery.enums.SqlTypeNames.FLOAT), 
+			bigquery.SchemaField('min_temperature', bigquery.enums.SqlTypeNames.FLOAT), 
+			bigquery.SchemaField('cloudiness', bigquery.enums.SqlTypeNames.FLOAT), 
+			bigquery.SchemaField('rain', bigquery.enums.SqlTypeNames.FLOAT), 
+			bigquery.SchemaField('rain_probability', bigquery.enums.SqlTypeNames.FLOAT), 
+			bigquery.SchemaField('wind_speedy', bigquery.enums.SqlTypeNames.FLOAT, description='km/h'), 
+			bigquery.SchemaField('description', bigquery.enums.SqlTypeNames.STRING), 
+			bigquery.SchemaField('condition', bigquery.enums.SqlTypeNames.STRING) 
+		], 
+		write_disposition='WRITE_APPEND', 
+		autodetect=False, 
+		source_format=bigquery.SourceFormat.CSV 
+	) 
+
+	job = client.load_table_from_dataframe(df, table_id, job_config=job_config) 
+	
+	return None
+			</code></pre>
+			</br>
+
+			<!-- Tabelas no BigQuery -->
+			<h2>Tabelas no BigQuery</h2>
 			<p>
 				Por fim, as tabelas <code>tempo_real</code> e <code>tempo_forecast</code> foram criada no BigQuery e populadas com os dados obtidos pela API.
 			</p>
 			<p>
 				Tabela <code>tempo_real</code>:
 			</p>
-			<img src="images\projetos\05_11.png">
+			<span class="image fit no-overlay"><img src="images/projetos/projeto-api/05_11.png" alt=""></span>
 			<p>
 				Tabela <code>tempo_forecast</code>:
 			</p>
-			<img src="images\projetos\05_10.png">
+			<span class="image fit no-overlay"><img src="images/projetos/projeto-api/05_10.png" alt=""></span>
 			<p>
 				Dessa forma, consultas utilizando a linguagem SQL podem ser feitas para analisar os dados obtidos.
 			</p>
-			<img src="images\projetos\05_12.png">
-		</article>
+			<span class="image fit no-overlay"><img src="images/projetos/projeto-api/05_12.png" alt=""></span>
+		</section>
+		<ul class="actions">
+			<li><a href="portfolio.html" class="button icon solid fa-arrow-left">Voltar</a></li>
+		</ul>
 	</div>
-</div>
-<!-- End Main -->
-    
-<!--------------------------------------
-FOOTER
---------------------------------------->
-<div class="container mt-5">
-	<footer class="bg-white border-top p-3 text-muted small">
-	<div class="row align-items-center justify-content-between">
-		<div>
-			<span class="navbar-brand mr-2"><strong>Mundana</strong></span> Copyright &copy;
-			<script>document.write(new Date().getFullYear())</script>
-			 . All rights reserved.
+
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="icons">
+				<li><a href="https://www.linkedin.com/in/carolyumi" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+				<li><a href="https://github.com/carolysg" class="icon brands fa-github"><span class="label">Github</span></a></li>
+				<li><a href="mailto:carolinagoshima@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
+			<ul class="copyright">
+				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
 		</div>
-		<div>
-			 Made with <a target="_blank" class="text-secondary font-weight-bold" href="https://www.wowthemes.net/mundana-free-html-bootstrap-template/">Mundana Theme</a> by WowThemes.net.
-		</div>
-	</div>
 	</footer>
-</div>
-<!-- End Footer -->
-    
-<!--------------------------------------
-JAVASCRIPTS
---------------------------------------->
-<script src="./assets/js/vendor/jquery.min.js" type="text/javascript"></script>
-<script src="./assets/js/vendor/popper.min.js" type="text/javascript"></script>
-<script src="./assets/js/vendor/bootstrap.min.js" type="text/javascript"></script>
-<script src="./assets/js/functions.js" type="text/javascript"></script>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/prism.js"></script>
+
 </body>
+
 </html>

@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<!-- COLOCAR O NOME DO PROJETO AQUI -->
+	<title>Projeto Análise de Jogos da Steam</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="icon" type="image/x-icon" href="/images/icons/favicon.ico">
+	<link rel="stylesheet" href="assets/css/main.css" />
+
+	<link rel="stylesheet" href="assets/css/prism.css" />
+</head>
+
+<body class="is-preload">
+	<script>
+		document.body.classList.add('fade');
+
+		document.addEventListener("DOMContentLoaded", () => {
+			window.setTimeout(function () {
+				document.body.classList.remove('fade');
+			}, 230);
+		});
+	</script>
+	<!-- Header -->
+	<header id="header">
+		<div class="bg-header"></div>
+		<div class="inner">
+			<a href="#" class="image avatar"><img src="images/img01.png" alt="" /></a>
+			<ul class="sidebar">
+				<li><a href="index.html" class="sidebar-link">Início</a></li>
+				<li><a href="sobre.html" class="sidebar-link">Sobre mim</a></li>
+				<li><a href="portfolio.html" class="sidebar-link">Projetos</a></li>
+				<li><a href="certificados.html" class="sidebar-link">Certificados</a></li>
+			</ul>
+		</div>
+	</header>
+
+	<!-- Main -->
+	<div id="main">
+		<section id="projeto-header">
+			<header class="major">
+				<div class="col-12"></div>
+				<h2>Projeto Análise de Jogos da Steam</h2>
+			</header>
+			<ul class="actions fit small">
+				<li>
+					<a href="https://github.com/carolysg/steam_games" class="button icon brands small fit fa-github solid" target="_blank">Repositório do Github</a>
+				</li>
+				<li>
+					<a href="https://www.kaggle.com/datasets/antonkozyriev/game-recommendations-on-steam?select=games.csv" class="button fit small"  target="_blank">Dataset</a>
+				</li>
+			</ul>
+		</section>
+		<!-- BLOCO DE CONTEUDO -->
+		<section id="sobre">
+			<h2>Sobre o projeto</h2>
+			<p><span class="image right"><img src="images/thumbs_proj/game.jpg" alt=""></span>
+				Este é o projeto final do módulo Banco de Dados I do curso da Ada Tech - LM Tech Data Talents.
+			</p>
+			<p>
+				O projeto utilizou uma base de dados com informações sobre jogos da Steam, obtida no Kaggle.
+				3 tabelas diferentes foram utilizadas: games, users e recommendations.
+			</p>
+			<ul>
+				<li>Games: app_id, title, date_release, win, mac, linux, rating, positive_ratio, user_reviews, price_final</li>
+				<li>Users: user_id, products, reviews</li>
+				<li>Recommendations: app_id, date, is_recommended, hours, user_id, review_id</li>
+			</ul>
+			<p>
+				O projeto foi realizado em dupla - mais informações podem ser encontradas no repositório do Github.
+			</p>
+
+			<h2>Conexão com o PostgreSQL</h2>
+			<p>
+				Inicialmente, todas as tabelas foram criadas no PostgreSQL. 
+				Para realizar as queries utilizando o Python, foi necessário criar uma conexão utilizando psycopg2.
+			</p>
+			<pre><code class="language-python">
+import pandas as pd
+import psycopg2
+import pandasql as ps
+
+conn = psycopg2.connect(
+    host = "localhost", 
+    database = "postgres",  
+    user = "postgres", 
+    password = "senha"
+)
+			</code></pre>
+			</br>
+
+			<h2>Etapas iniciais</h2>
+			<p>
+				Para cada uma das tabelas, foram verificados os tipos de dados, a quantidade de valores nulos e a quantidade de valores únicos.
+				Abaixo, seguem as queries de exemplo para a tabela Games:
+			</p>
+			<pre><code class="language-python">
+# tipos de dados
+query = """
+SELECT 
+    COLUMN_NAME, DATA_TYPE 
+FROM INFORMATION_SCHEMA.columns
+WHERE table_schema = 'public' and table_name = 'games'
+;
+"""
+df = pd.read_sql_query(query, con = conn)
+
+# quantidade de nulos
+query = """
+SELECT 
+  COUNT(CASE WHEN app_id IS NULL THEN 1 END) AS null_app_id,
+  COUNT(CASE WHEN title IS NULL THEN 1 END) AS null_title,
+  COUNT(CASE WHEN date_release IS NULL THEN 1 END) AS null_date_release,
+  COUNT(CASE WHEN win IS NULL THEN 1 END) AS null_win,
+  COUNT(CASE WHEN mac IS NULL THEN 1 END) AS null_mac,
+  COUNT(CASE WHEN linux IS NULL THEN 1 END) AS null_linux,
+  COUNT(CASE WHEN rating IS NULL THEN 1 END) AS null_rating,
+  COUNT(CASE WHEN positive_ratio IS NULL THEN 1 END) AS null_positive_ratio,
+  COUNT(CASE WHEN user_reviews IS NULL THEN 1 END) AS null_user_reviews,
+  COUNT(CASE WHEN price_final IS NULL THEN 1 END) AS null_price_final
+FROM games; 
+"""
+df = pd.read_sql_query(query, con = conn)
+
+# quantidade de valores únicos
+query = """
+SELECT
+    COUNT (DISTINCT title) AS unique_title,
+    COUNT (DISTINCT date_release) AS unique_date_release,
+    COUNT (DISTINCT rating) AS unique_rating
+FROM games;
+"""
+df = pd.read_sql_query(query, con = conn)
+			</code></pre>
+			</br>
+
+			<h2>Análise dos dados</h2>
+			<p>
+				Com o intuito de entender melhor os dados, algumas perguntas foram feitas:
+			</p>
+			<ol>
+				<li>Quais são os 5 jogos mais caros e quando foram lançados? Caso os jogos possuam valor igual, ordenar por data de lançamento mais antiga.</li>
+				<pre><code class="language-python">
+query = """
+SELECT
+	title, date_release, price_final
+FROM games
+ORDER BY price_final DESC, date_release ASC
+LIMIT 5;
+"""
+				</code></pre>
+				<span class="image no-overlay"><img src="images/projetos/jogos-steam/01_01.png" alt="" /></span>
+			</br>
+		</br>
+
+				<li>Quais são os 5 jogos (não gratuitos) mais baratos e quando foram lançados? Caso os jogos possuam valor igual, ordenar por data de lançamento mais antiga.</li>
+				<pre><code class="language-python">
+query = """
+SELECT
+	title, date_release, price_final
+FROM games
+WHERE price_final > 0
+ORDER BY price_final ASC, date_release ASC
+LIMIT 5;
+"""
+				</code></pre>
+				<span class="image no-overlay"><img src="images/projetos/jogos-steam/01_02.png" alt="" /></span>
+			</br>
+		</br>
+
+				<li>Quais são os 10 jogos mais bem avaliados (avaliação "very positive") e com maior quantidade de reviews? São jogos pagos ou gratuitos?</li>
+				<pre><code class="language-python">
+query = """
+SELECT
+	title, rating, user_reviews, price_final
+FROM games
+WHERE rating = 'Very Positive'
+ORDER BY user_reviews DESC
+LIMIT 10
+"""
+				</code></pre>
+				<span class="image no-overlay"><img src="images/projetos/jogos-steam/01_03.png" alt="" /></span>
+			</br>
+		</br>
+
+				<li>Quantos jogos rodam nos três sistemas operacionais?</li>
+				<pre><code class="language-python">
+query = """
+SELECT
+	COUNT (title) AS all_OS
+FROM games
+WHERE (win = True) and (mac = True) and (linux = True)
+"""
+				</code></pre>
+				<span class="image no-overlay"><img src="images/projetos/jogos-steam/01_04.png" alt="" /></span>
+			</br>
+		</br>
+			
+				<li>Quais são os 10 jogos com a maior quantidade de recomendações positivas?</li>
+				<pre><code class="language-python">
+query = """
+SELECT
+	g.title,
+	COUNT(is_recommended) AS recommended
+FROM games AS g
+JOIN recommendations AS r
+	ON g.app_id = r.app_id
+WHERE is_recommended = True
+GROUP BY g.title
+ORDER BY recommended DESC
+LIMIT 10
+"""
+				</code></pre>
+				<span class="image no-overlay"><img src="images/projetos/jogos-steam/01_05.png" alt="" /></span>
+			</br>
+		</br>
+
+				<li>Qual é o id do usuário que fez mais recomendações?</li>
+				<pre><code class="language-python">
+query = """
+SELECT
+	user_id, reviews
+FROM users
+ORDER BY (reviews) DESC
+LIMIT 1
+"""
+				</code></pre>
+				<span class="image no-overlay"><img src="images/projetos/jogos-steam/01_06.png" alt="" /></span>
+			</br>
+		</br>
+
+				<li>Quantos jogos possui o usuário que mais fez recomendações?</li>
+				<pre><code class="language-python">
+query = """
+SELECT
+	user_id, products
+FROM users
+WHERE user_id = (
+	SELECT user_id
+	FROM users
+	ORDER BY reviews DESC
+	LIMIT 1
+)
+"""
+				</code></pre>
+				<span class="image no-overlay"><img src="images/projetos/jogos-steam/01_07.png" alt="" /></span>
+			</br>
+		</br>
+
+				<li>Quantos jogos foram lançados em cada ano?</li>
+				<pre><code class="language-python">
+query = """
+SELECT
+	CAST(EXTRACT(YEAR from date_release) AS INT) AS year, COUNT (date_release)
+FROM games
+GROUP BY year
+ORDER BY year ASC
+"""
+				</code></pre>
+				<span class="image no-overlay"><img src="images/projetos/jogos-steam/01_08.png" alt="" /></span>
+			</br>
+		</br>
+				<li>Quais são os 10 jogos com maior quantidade de horas jogadas?</li>
+				<pre><code class="language-python">
+query = """
+SELECT
+	g.title,
+	SUM(hours) AS total_hours_played
+FROM games as g
+JOIN recommendations AS r
+	ON g.app_id = r.app_id
+GROUP BY title
+ORDER BY total_hours_played DESC
+LIMIT 10
+"""
+				</code></pre>
+				<span class="image no-overlay"><img src="images/projetos/jogos-steam/01_09.png" alt="" /></span>
+			</br>
+		</br>
+
+				<li>Qual a média mensal de horas jogadas em 2022 do jogo com maior quantidade de horas jogadas? 
+					Ou seja, a média mensal de horas jogadas em 2022 do jogo "Rust", de acordo com a questão anterior.</li>
+					<pre><code class="language-python">
+query = """
+SELECT
+	CAST(EXTRACT(MONTH FROM date) AS INT) AS month,
+	AVG(hours) AS avg_hours_played
+FROM games as g
+JOIN recommendations AS r
+	ON g.app_id = r.app_id
+WHERE
+	g.title = (
+	SELECT g.title
+	FROM games as g
+	JOIN recommendations AS r
+		ON g.app_id = r.app_id
+	GROUP BY title
+	ORDER BY SUM(hours) DESC
+	LIMIT 1
+	) AND
+	EXTRACT(YEAR FROM date) = 2022
+GROUP BY month
+ORDER BY month
+"""
+					</code></pre>
+					<span class="image no-overlay"><img src="images/projetos/jogos-steam/01_10.png" alt="" /></span>
+				</br>
+			</br>
+			</ol>
+
+		</section>
+		<!-- FIM DO BLOCO DE CONTEUDO -->
+		<ul class="actions">
+			<li><a href="portfolio.html" class="button icon solid fa-arrow-left">Voltar</a></li>
+		</ul>
+	</div>
+
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="icons">
+				<li><a href="https://www.linkedin.com/in/carolyumi" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+				<li><a href="https://github.com/carolysg" class="icon brands fa-github"><span class="label">Github</span></a></li>
+				<li><a href="mailto:carolinagoshima@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
+			<ul class="copyright">
+				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</div>
+	</footer>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/prism.js"></script>
+
+</body>
+
+</html>

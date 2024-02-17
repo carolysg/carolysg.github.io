@@ -1,212 +1,218 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
 <head>
-	<meta charset="utf-8"/>
-	<title>Projeto - Investidores</title>
-	<!-- Google Font -->
-	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Source+Sans+Pro:400,700" rel="stylesheet">
-	<!-- Font Awesome Icons -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-	<!-- Main CSS -->
-	<link href="./assets/css/main2.css" rel="stylesheet"/>
+	<title>Projeto Investidores</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="icon" type="image/x-icon" href="/images/icons/favicon.ico">
+	<link rel="stylesheet" href="assets/css/main.css" />
+
+	<link rel="stylesheet" href="assets/css/prism.css" />
 </head>
-<body>   
-<!--------------------------------------
-HEADER
---------------------------------------->
-<div class="container">
-	<div class="jumbotron jumbotron-fluid mb-3 pl-0 pt-0 pb-0 bg-white position-relative">
-		<div class="h-100 tofront">
-			<div class="row justify-content-between">
-				<div class="col-md-6 pt-6 pb-6 pr-6 align-self-center">
-					<h1>Análise de dados fictícios de investidores</h1>
-					<a small href="https://github.com/PeterRibs/analiseInvestidores" target="_blank">Link do repositório do Github</a>
-				</div>
-				<div class="col-md-6 pr-0">
-					<img src="images/projeto02.png">
-				</div>
-			</div>
+
+<body class="is-preload">
+	<script>
+		document.body.classList.add('fade');
+
+		document.addEventListener("DOMContentLoaded", () => {
+			window.setTimeout(function () {
+				document.body.classList.remove('fade');
+			}, 230);
+		});
+	</script>
+	<!-- Header -->
+	<header id="header">
+		<div class="bg-header"></div>
+		<div class="inner">
+			<a href="#" class="image avatar"><img src="images/img01.png" alt="" /></a>
+			<ul class="sidebar">
+				<li><a href="index.html" class="sidebar-link">Início</a></li>
+				<li><a href="sobre.html" class="sidebar-link">Sobre mim</a></li>
+				<li><a href="portfolio.html" class="sidebar-link">Projetos</a></li>
+				<li><a href="certificados.html" class="sidebar-link">Certificados</a></li>
+			</ul>
 		</div>
-	</div>
-</div>
-<!-- End Header -->
-    
-<!--------------------------------------
-MAIN
---------------------------------------->
-<div class="container pt-4 pb-4">
-	<div class="row justify-content-center">
-		<article class="article-post">
-			<div>
-				<h2>Sobre o projeto</h2>
-			</div>
-			<br>
-			<p>
-				Este é o projeto final do módulo Técnicas de Programação I do curso da Ada Tech - LM Tech Data Talents. <br>
-                O projeto consiste na análise de dados acerca de investidores. <br>
-                São 3 arquivos CSV, sendo um de cadastro e dois de investimentos, conforme mostrado abaixo:
-				<ul>
-                    Cadastro (características dos investidores):
-					<li>id : Identificação do investidor</li>
-					<li>Nome : Nome completo do investidor</li>
-					<li>Sexo : Feminino ou masculino</li>
-                    <li>Nasc : Data de nascimento</li>
-                    <li>Idade : Idade do investidor</li>
-                    <li>Email : E-mail do investidor</li>
-                    <li>Lat_long : Dados geográficos do investidor</li>
-                    <li>Job : Profissão do investidor ou do seu responsável (em inglês)</li>
-                    <li>Estado : Estado onde o investidor reside</li>
-                    <br>
-                    Investimento (características dos investimentos):
-                    <li>id : Identificação do investidor</li>
-                    <li>Salario : Renda do investidor ou seu responsável</li>
-                    <li>Perfil : Perfil de investimento</li>
-                    <li>Ativo01, Ativo02, Ativo03, Ativo04, Ativo05, Ativo06, Ativo07 : O quanto de dinheiro o investidor colocou em cada ativo</li>
-                    <li>Nota1, Nota2 : O quanto o investidor está satisfeito com nossa empresa (2 avaliações)</li>
-				</ul>
-                O projeto foi realizado em grupo (3 pessoas) e os membros podem ser observados no repositório do Github.
+	</header>
+
+	<!-- Main -->
+	<div id="main">
+		<section id="projeto-header">
+			<header class="major">
+				<div class="col-12"></div>
+				<h2>Análise de dados fictícios de investidores</h2>
+			</header>
+			<ul class="actions fit small">
+				<li>
+					<a href="https://github.com/PeterRibs/analiseInvestidores"
+						class="button icon brands small fit fa-github solid" target="_blank">Repositório do Github</a>
+				</li>
+			</ul>
+		</section>
+		<!-- Conteúdo vai aqui -->
+		<section id="sobre">
+			<!-- Sobre o projeto -->
+			<h2>Sobre o projeto</h2>
+			<p><span class="image right no-overlay"><img src="images/thumbs_proj/investidores.jpg" alt=""></span>
+				Este é o projeto final do módulo Técnicas de Programação I do curso da Ada Tech - LM Tech Data Talents.
+				<br></p>
+			<p></p>O projeto consiste na análise de dados acerca de investidores. <br>
+				São 3 arquivos CSV, sendo um de cadastro e dois de investimentos, conforme mostrado abaixo:
 			</p>
-			<br>
-            <div>
-				<h2>Etapas iniciais</h2>
-			</div>
-			<br>
+			<ul>
+				Cadastro (características dos investidores):
+				<li>id : Identificação do investidor</li>
+				<li>Nome : Nome completo do investidor</li>
+				<li>Sexo : Feminino ou masculino</li>
+				<li>Nasc : Data de nascimento</li>
+				<li>Idade : Idade do investidor</li>
+				<li>Email : E-mail do investidor</li>
+				<li>Lat_long : Dados geográficos do investidor</li>
+				<li>Job : Profissão do investidor ou do seu responsável (em inglês)</li>
+				<li>Estado : Estado onde o investidor reside</li>
+				<br>
+				Investimento (características dos investimentos):
+				<li>id : Identificação do investidor</li>
+				<li>Salario : Renda do investidor ou seu responsável</li>
+				<li>Perfil : Perfil de investimento</li>
+				<li>Ativo01, Ativo02, Ativo03, Ativo04, Ativo05, Ativo06, Ativo07 : O quanto de dinheiro o investidor
+					colocou em cada ativo</li>
+				<li>Nota1, Nota2 : O quanto o investidor está satisfeito com nossa empresa (2 avaliações)</li>
+			</ul>
+			<p>O projeto foi realizado em grupo (3 pessoas) e os membros podem ser observados no repositório do Github.
+			</p>
+
+			<h2>Etapas iniciais</h2>
 			<p>
-                O primeiro passo foi importar as bibliotecas necessárias, abrir os arquivos CSV e verificar como estavam os dados.
+				O primeiro passo foi importar as bibliotecas necessárias, abrir os arquivos CSV e verificar como estavam
+				os dados.
 			</p>
 			<p>Arquivo de cadastros:</p>
-			<img src="images\projetos\02_01.png">
+			<span class="image fit no-overlay"><img src="images/projetos/investidores/02_01.png" alt="" /></span>
 			<p>Arquivo de investimentos 1:</p>
-			<img src="images\projetos\02_02.png">
+			<span class="image fit no-overlay"><img src="images/projetos/investidores/02_02.png" alt="" /></span>
 			<p>Arquivo de investimentos 2:</p>
-			<img src="images\projetos\02_03.png">
-			<p>
-				As bases de investimentos foram concatenadas e as linhas duplicadas foram removidas, resultando em um dataframe com 38754 linhas e 12 colunas:
-			</p>
-			<img src="images\projetos\02_04.png">
-			<p>
-				Depois, o dataframe de cadastro também foi concatenado ao dataframe de investimentos utilizando a chave "id". Dessa forma, as análises se tornam mais fáceis, limitadas a um único dataframe.
-				Antes de iniciar as análises de fato, verificou-se a quantidade de dados faltantes no dataframe.
-			</p>
-			<img src="images\projetos\02_05.png">
+			<span class="image fit no-overlay"><img src="images/projetos/investidores/02_03.png" alt="" /></span>
+			<p> As bases de investimentos foram concatenadas e as linhas duplicadas foram removidas, resultando em um
+				dataframe com 38754 linhas e 12 colunas: </p>
+			<span class="image fit no-overlay"><img src="images/projetos/investidores/02_04.png" alt="" /></span>
+			<p> Depois, o dataframe de cadastro também foi concatenado ao dataframe de investimentos utilizando a chave
+				"id". Dessa forma, as análises se tornam mais fáceis, limitadas a um único dataframe. Antes de iniciar
+				as análises de fato, verificou-se a quantidade de dados faltantes no dataframe. </p>
+			<span class="image fit no-overlay"><img src="images/projetos/investidores/02_05.png" alt="" /></span>
 			<p>
 				O tratamento de valores nulos seguiu a seguinte lógica:
-				<ul>
-					<li>Para as colunas de ativos (Ativo01 até Ativo07), substituímos os valores faltantes por zero, já que um investimento de R$ 0,00 é a mesma coisa que não colocar nenhum valor no ativo.</li>
-					<li>Para as notas (Nota1 e Nota2), quando pelo menos uma das notas foi dada, adicionamos as notas que foram dadas na outra amostragem pelo mesmo participante.</li>
-					<li>Quando as duas notas eram faltantes, o valor foi preenchido com a média de cada uma das notas (das outras pessoas).</li>
-				</ul>
-				Dessa forma, todos os valores nulos foram preenchidos.
 			</p>
-			<img src="images\projetos\02_06.png">
-			<br>
-			<br>
-			<div>
-				<h2>Manipulação de dados e análise exploratória</h2>
-			</div>
-			<br>
+			<ul>
+				<li>Para as colunas de ativos (Ativo01 até Ativo07), substituímos os valores faltantes por zero, já que
+					um investimento de R$ 0,00 é a mesma coisa que não colocar nenhum valor no ativo.</li>
+				<li>Para as notas (Nota1 e Nota2), quando pelo menos uma das notas foi dada, adicionamos as notas que
+					foram dadas na outra amostragem pelo mesmo participante.</li>
+				<li>Quando as duas notas eram faltantes, o valor foi preenchido com a média de cada uma das notas (das
+					outras pessoas).</li>
+			</ul>
+			<p> Dessa forma, todos os valores nulos foram preenchidos. </p>
+			<span class="image fit no-overlay"><img src="images/projetos/investidores/02_06.png" alt="" /></span>
+
+			<h2>Manipulação de dados e análise exploratória</h2>
 			<p>
 				Para entender melhor o comportamento dos dados, uma descrição das variáveis numéricas foi realizada:
 			</p>
-			<img src="images\projetos\02_07.png">
+			<span class="image fit no-overlay"><img src="images/projetos/investidores/02_07.png" alt="" /></span>
 			<p>
 				Após todas as alterações realizadas, o dataframe final ficou com a seguinte estrutura:
 			</p>
-			<img src="images\projetos\02_08.png">
+			<span class="image fit no-overlay"><img src="images/projetos/investidores/02_08.png" alt="" /></span>
 			<p>
-				A partir daqui, algumas manipulações foram feitas com o intuito de explorar os dados e melhorar seu entendimento:
-				<ul>
-					<li>Criação da coluna "Total" com a soma do valor de todos os ativos por investidor.</li>
-					<li>Criação da coluna "Média" com a média das notas 1 e 2.</li>
-					<li>Criação da coluna "Domínio" com o domínio do e-mail de cada investidor.</li>
-					<li>Alteração da coluna "Salário" para "Renda", alterando o tipo da coluna para numérica.</li>
-					<li>Alteração dos valores da coluna "Sexo" para "Masculino" e "Feminino".</li>
-				</ul>
+				A partir daqui, algumas manipulações foram feitas com o intuito de explorar os dados e melhorar seu
+				entendimento:
 			</p>
-			<img src="images\projetos\02_09.png">
+			<ul>
+				<li>Criação da coluna "Total" com a soma do valor de todos os ativos por investidor.</li>
+				<li>Criação da coluna "Média" com a média das notas 1 e 2.</li>
+				<li>Criação da coluna "Domínio" com o domínio do e-mail de cada investidor.</li>
+				<li>Alteração da coluna "Salário" para "Renda", alterando o tipo da coluna para numérica.</li>
+				<li>Alteração dos valores da coluna "Sexo" para "Masculino" e "Feminino".</li>
+			</ul>
+			<span class="image fit no-overlay"><img src="images/projetos/investidores/02_09.png" alt="" /></span>
 			<p>
-				A coluna "Média" foi então transformada em número inteiro e uma nova coluna "NPS" foi criada. Essa coluna mostra se o investidor é promotor, neutro ou detrator, de acordo com a seguinte regra:
-				<ul>
-					<li>Promotor: média das notas maior ou igual a 80.</li>
-					<li>Neutro: média das notas entre 50 e 79.</li>
-					<li>Detrator: média das notas inferior a 50.</li>
-				</ul>
-			</p>
-			<img src="images\projetos\02_10.png">
-			<br>
-			<br>
-			<div>
-				<h2>Análise dos dados</h2>
-			</div>
-			<br>
+				A coluna "Média" foi então transformada em número inteiro e uma nova coluna "NPS" foi criada. Essa
+				coluna mostra se o investidor é promotor, neutro ou detrator, de acordo com a seguinte regra:
+			</p> 
+			<p>
+			<span class="image no-overlay"><img src="images/projetos/investidores/02_10.png" alt="" /></span></p>
+			<p>
+			<ul>
+				<li>Promotor: média das notas maior ou igual a 80.</li>
+				<li>Neutro: média das notas entre 50 e 79.</li>
+				<li>Detrator: média das notas inferior a 50.</li>
+			</ul></p>
+
+			<h2>Análise dos dados</h2>
 			<p>
 				Com o intuito de realizar uma análise dos dados, algumas perguntas foram respondidas:
 			</p>
-			<p>
-				<li>Qual o total investido em cada ativo?</li>
-				O ativo 4 teve o maior valor total investido, enquanto o ativo 7 teve o menor.
+			<li>Qual o total investido em cada ativo?</li>
+			<p>O ativo 4 teve o maior valor total investido, enquanto o ativo 7 teve o menor.</p>
+			<span class="image no-overlay"><img src="images/projetos/investidores/02_11.png" alt="" /></span>
+			<p></p>
+			<li>Qual o menor valor investido em cada ativo?</li>
+			<p>Para os ativos 1, 2, 3, 4, 5 e 6, o menor valor investido foi de R$ 0. O ativo 7, por sua vez, teve como
+				menor valor investido R$ 462,93.</p>
+			<span class="image no-overlay"><img src="images/projetos/investidores/02_12.png" alt="" /></span>
+			<p></p>
+			<li>Qual a média de valor investido em cada ativo?</li>
+			<p>O ativo 4 teve o maior valor médio de investimento (R$ 10.505), enquando o ativo 7 teve o menor (R$ 500).
 			</p>
-			<img src="images\projetos\02_11.png">
-			<p>
-				<li>Qual o menor valor investido em cada ativo?</li>
-				Para os ativos 1, 2, 3, 4, 5 e 6, o menor valor investido foi de R$ 0. O ativo 7, por sua vez, teve como menor valor investido R$ 462,93.
-			</p>
-			<img src="images\projetos\02_12.png">
-			<p>
-				<li>Qual a média de valor investido em cada ativo?</li>
-				O ativo 4 teve o maior valor médio de investimento (R$ 10.505), enquando o ativo 7 teve o menor (R$ 500).
-			</p>
-			<img src="images\projetos\02_13.png">
-			<p>
-				<li>Qual a idade do investidor mais velho?</li>
-				O investidor mais velho tem 51 anos.
-			</p>
-			<p>
-				<li>Quantos investidores são promotores? E quantos são do sexo feminino?</li>
-				3669 investidores são promotores. 19385 investidores são mulheres.
-			</p>
-			<p>
-				<li>Quantos investidores do sexo feminino tem mais de 25 anos e investiram menos de R$ 10.000?</li>
-				442 investidores são mulheres, tem mais de 25 anos e investiram menos de R$ 10.000.
-			</p>
-			<p>
-				<li>Qual é a soma do total investido por cada estado?</li>
-			</p>
-			<img src="images\projetos\02_14.png">
-			<p>
-				<li>Como os investidores se distribuem em promotores, detratores e neutros?</li>
-				Os investidores se dividem em 3669 promotores, 15477 neutros e 19608 detratores.
-			</p>
-		</article>
+			<span class="image no-overlay"><img src="images/projetos/investidores/02_13.png" alt="" /></span>
+			<p></p>
+			<li>Qual a idade do investidor mais velho?</li>
+			<p>O investidor mais velho tem 51 anos.</p>
+			<li>Quantos investidores são promotores? E quantos são do sexo feminino?</li>
+			<p>3669 investidores são promotores. 19385 investidores são mulheres.</p>
+			<li>Quantos investidores do sexo feminino tem mais de 25 anos e investiram menos de R$ 10.000?</li>
+			<p>442 investidores são mulheres, tem mais de 25 anos e investiram menos de R$ 10.000.</p>
+			<li>Qual é a soma do total investido por cada estado?</li>
+			<span class="image no-overlay"><img src="images/projetos/investidores/02_14.png" alt="" /></span>
+			<p></p>
+			<li>Como os investidores se distribuem em promotores, detratores e neutros?</li>
+			<p>Os investidores se dividem em 3669 promotores, 15477 neutros e 19608 detratores.</p>
+
+		</section>
+		<ul class="actions">
+			<li><a href="portfolio.html" class="button icon solid fa-arrow-left">Voltar</a></li>
+		</ul>
 	</div>
-</div>
-<!-- End Main -->
-    
-<!--------------------------------------
-FOOTER
---------------------------------------->
-<div class="container mt-5">
-	<footer class="bg-white border-top p-3 text-muted small">
-	<div class="row align-items-center justify-content-between">
-		<div>
-			<span class="navbar-brand mr-2"><strong>Mundana</strong></span> Copyright &copy;
-			<script>document.write(new Date().getFullYear())</script>
-			 . All rights reserved.
+
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="icons">
+				<li><a href="https://www.linkedin.com/in/carolyumi" class="icon brands fa-linkedin-in"><span
+							class="label">LinkedIn</span></a></li>
+				<li><a href="https://github.com/carolysg" class="icon brands fa-github"><span
+							class="label">Github</span></a></li>
+				<li><a href="mailto:carolinagoshima@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
+			<ul class="copyright">
+				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
 		</div>
-		<div>
-			 Made with <a target="_blank" class="text-secondary font-weight-bold" href="https://www.wowthemes.net/mundana-free-html-bootstrap-template/">Mundana Theme</a> by WowThemes.net.
-		</div>
-	</div>
 	</footer>
-</div>
-<!-- End Footer -->
-    
-<!--------------------------------------
-JAVASCRIPTS
---------------------------------------->
-<script src="./assets/js/vendor/jquery.min.js" type="text/javascript"></script>
-<script src="./assets/js/vendor/popper.min.js" type="text/javascript"></script>
-<script src="./assets/js/vendor/bootstrap.min.js" type="text/javascript"></script>
-<script src="./assets/js/functions.js" type="text/javascript"></script>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/prism.js"></script>
+
 </body>
+
 </html>

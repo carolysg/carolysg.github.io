@@ -7,7 +7,7 @@
 <html>
 
 <head>
-	<title>Projeto API HG Weather</title>
+	<title>HG Weather API project</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="icon" type="image/x-icon" href="/images/icons/favicon.ico">
@@ -32,10 +32,10 @@
 		<div class="inner">
 			<a href="#" class="image avatar"><img src="images/img01.png" alt="" /></a>
 			<ul class="sidebar">
-				<li><a href="index.html" class="sidebar-link">Início</a></li>
-				<li><a href="sobre.html" class="sidebar-link">Sobre mim</a></li>
-				<li><a href="portfolio.html" class="sidebar-link">Projetos</a></li>
-				<li><a href="certificados.html" class="sidebar-link">Certificados</a></li>
+				<li><a href="index.html" class="sidebar-link">Home</a></li>
+				<li><a href="sobre.html" class="sidebar-link">About me</a></li>
+				<li><a href="portfolio.html" class="sidebar-link">Projects</a></li>
+				<li><a href="certificados.html" class="sidebar-link">Certificates</a></li>
 			</ul>
 		</div>
 	</header>
@@ -45,69 +45,57 @@
 		<section id="projeto-header">
 			<header class="major">
 				<div class="col-12"></div>
-				<h2>Coleta de dados via API HG Weather utilizando GCP</h2>
+				<h2>Data collection via HG Weather API using GCP</h2>
 			</header>
 			<ul class="actions fit small">
 				<li>
 					<a href="https://github.com/carolysg/api-weather/tree/main"
-						class="button icon brands small fit fa-github solid" target="_blank">Repositório do Github</a>
+						class="button icon brands small fit fa-github solid" target="_blank">Github repository</a>
 				</li>
 				<li>
-					<a href="https://hgbrasil.com/status/weather" class="button fit small" target="_blank">Site da API</a>
+					<a href="https://hgbrasil.com/status/weather" class="button fit small" target="_blank">API website</a>
 				</li>
 			</ul>
 		</section>
 		<!-- Conteúdo vai aqui -->
 		<section id="sobre">
 			<!-- Sobre o projeto -->
-			<h2>Sobre o projeto</h2>
+			<h2>About the project</h2>
 			<p> <span class="image right"><img src="images/thumbs_proj/apihg.jpg" alt=""></span>
-				Este projeto foi inteiramente realizado na Google Cloud Plataform (GCP) e consiste das seguintes etapas:
+				This project was carried out entirely on the Google Cloud Platform (GCP) and consists of the following stages:
 			</p>
 			<ul>
-				<li>Coleta de dados do clima da cidade de São Carlos (dados atuais e de previsão) utilizando a API HG
-					Weather.</li>
-				<li>Tratamento de dados da camada bronze para a silver.</li>
-				<li>Upload dos dados no BigQuery.</li>
+				<li>Collecting weather data for the city of São Carlos (current and forecast data) using the HG Weather API.</li>
+				<li>Processing data from the bronze layer to the silver layer.</li>
+				<li>Uploading the data to BigQuery.</li>
 			</ul>
-			<p> A arquitetura do projeto é apresentada no fluxograma abaixo: </p>
+			<p> The project architecture is presented in the diagram below: </p>
 			<span class="image fit no-overlay"><img src="images/projetos/projeto-api/05_01.png" alt=""></span>
-			<p> Vale ressaltar que, como o projeto foi realizado de forma totalmente gratuita (utilizando o período de
-				teste de 90 dias da GCP), as cloud functions permaneceram rodando apenas entre o período de 15/10/2023 a
-				14/01/2024. </p>
+			<p> It's worth noting that, since the project was carried out entirely for free (using GCP's 90-day trial period), the cloud functions only ran between 10/15/2023 and 01/14/2024. </p>
+
 
 			<!-- Etapas iniciais -->
-			<h2>Etapas iniciais</h2>
+			<h2>Initial steps</h2>
 			<p><span class="image right right-bigger no-overlay"><img src="images/projetos/projeto-api/05_02.png"
-						alt="" /></span>O primeiro passo do
-				projeto foi entender o funcionamento da API HG Weather, a qual seria utilizada
-				para coletar os dados do clima da cidade de São Carlos. A partir da documentação foi possível
-				verificar que cada cidade possui um código WOEID e que esse tipo de consulta não necessitava de
-				chave da API. Foi necessário apenas buscar pela cidade requerida e, então, o link para utilização da
-				API foi gerado automaticamente.</p>
-			<p>Ao fazer uma requisição utilizando o link da API, um JSON é retornado com dois tipos de informações:
+						alt="" /></span>The first step of the project was to understand how the HG Weather API works, which would be used to collect weather data for the city of São Carlos. From the documentation, it was found that each city has a WOEID code and that this type of query did not require an API key. It was only necessary to search for the desired city, and then the link for using the API was automatically generated.</p>
+			<p>When making a request using the API link, a JSON is returned with two types of information:
 			</p>
 			<ul>
-				<li>Dados sobre o clima atual: data, horário, temperatura, descrição do tempo, umidade, velocidade
-					do
-					vento, entre outras informações.</li>
+				<li>Current weather data: date, time, temperature, weather description, humidity, wind speed, among other information.</li>
 
-				<li>Dados da previsão do tempo dos próximos 9 dias: data, dia da semana, temperaturas máxima e
-					mínima,
-					probabilidade de chuva, entre outras.</li>
+				<li>Weather forecast data for the next 9 days: date, day of the week, maximum and minimum temperatures, chance of rain, and more.</li>
 			</ul>
 
-			<p>Um exemplo de arquivo JSON obtido pode ser visualizado neste link: <a
-					href="https://github.com/carolysg/api-weather/blob/main/sao-carlos-2023-10-15-15-30.json" target="_blank">arquivo.json</a>
+			<p>An example of a JSON file obtained can be viewed at this link: <a
+				href="https://github.com/carolysg/api-weather/blob/main/sao-carlos-2023-10-15-15-30.json" target="_blank">arquivo.json</a>
 			</p>
-			<p>Dessa forma, após entender o formato dos dados, iniciou-se a etapa de extração.</p>
+			<p>Thus, after understanding the data format, the extraction phase was started.</p>
 
 			<!-- Extração e ingestão dos dados -->
-			<h2>Extração e ingestão dos dados</h2>
-			<p>A cloud function get_sao_carlos_weather, escrita em Python, foi responsável por fazer a requisição dos
-				dados e salvar o arquivo JSON no bucket dados-api dentro da pasta bronze. Esta function era ativada uma
-				vez ao dia, por meio de um cloud scheduler. Para cada dia, a function salvava o arquivo JSON com a
-				respectiva data. </p>
+			<h2>Data extraction and ingestion</h2>
+			<p>
+				The cloud function <code>get_sao_carlos_weather</code>, written in Python, was responsible for making the data request and saving the JSON file in the <code>dados-api</code> bucket, inside the bronze folder. This function was triggered once a day by a cloud scheduler. Each day, the function saved the JSON file with the corresponding date.
+			</p>
 			<pre><code class="language-python">import functions_framework
 import pandas as pd
 import requests
@@ -134,12 +122,13 @@ def get_sao_carlos_weather(cloud_event=None):
 
 			<!-- Processamento dos dados -->
 			</br>
-			<h2>Processamento dos dados</h2>
-			<p>A arquitetura do projeto é toda baseada em eventos. Assim que um arquivo era carregado na pasta bronze,
-				um tópico Pub/Sub era ativado e triggava a próxima cloud function. </p>
-			<p>Todas as transformações necessárias foram realizadas pela cloud function process_sao_carlos_weather. Essa
-				function realizava, antes de tudo, a verificação do objeto que foi salvo no bucket. Caso o objeto
-				tivesse o prefixo correto, o processamento dos dados era iniciado. </p>
+			<h2>Data processing</h2>
+			<p>
+				The project architecture is entirely event-driven. As soon as a file was uploaded to the bronze folder, a Pub/Sub topic was triggered, activating the next cloud function.
+			</p>
+			<p>
+				All the necessary transformations were carried out by the cloud function <code>process_sao_carlos_weather</code>. This function first verified the object saved in the bucket. If the object had the correct prefix, the data processing was initiated.
+			</p>
 			<pre><code class="language-python">
 import functions_framework
 import pandas as pd
@@ -167,9 +156,9 @@ def process_sao_carlos_weather(cloud_event=None):
 	data = json.loads(json_data)				
 			</code></pre>
 			</br>
-			<p>Inicialmente, as informações contidas no arquivo JSON foram divididas em dois dataframes, um para os
-				dados sobre o clima atual e outro para os dados de previsão. Foram selecionadas apenas algumas das
-				informações presentes no arquivo JSON (aquelas consideradas as mais relevantes). </p>
+			<p>
+			Initially, the information contained in the JSON file was split into two dataframes: one for the current weather data and another for the forecast data. Only some of the information present in the JSON file was selected (those considered the most relevant).
+		</p>
 			<pre><code class="language-python">
 storage_client = storage.Client()
 bucket = storage_client.get_bucket(bucket_name)
@@ -205,14 +194,12 @@ df_forecast = pd.DataFrame({
 })
 			</code></pre>
 			</br>
-			<p> As transformações realizadas foram: </p>
+			<p> The following transformations were performed: </p>
 			<ul>
-				<li>Para a coluna <code>wind_speedy</code>, foram extraídos apenas os valores numéricos da velocidade do
-					vento, removendo os caracteres indicando <code>km/h</code>.</li>
-				<li>Os tipos das colunas foram alterados de forma a facilitar a posterior manipulação desses dados.</li>
-				<li>A coluna <code>date</code> do dataframe de previsão foi formatada corretamente.</li>
-				<li>As colunas <code>date</code> e <code>time</code> do dataframe de clima atual foram mescladas em uma
-					única coluna <code>datetime</code> e depois dropadas.</li>
+				<li>For the <code>wind_speedy</code> column, only the numeric values of the wind speed were extracted, removing the <code>km/h</code> characters.</li>
+				<li>The data types of the columns were adjusted to facilitate further manipulation.</li>
+				<li>The <code>date</code> column in the forecast dataframe was properly formatted.</li>
+				<li>The <code>date</code> and <code>time</code> columns in the current weather dataframe were merged into a single <code>datetime</code> column and then dropped.</li>
 			</ul>
 			<pre><code class="language-python">
 # == wind_speedy ==
@@ -240,9 +227,9 @@ for i in range(len(df_forecast)):
 df_real.drop(columns=['date', 'time'], inplace=True)
 			</code></pre>
 			</br>
-			<p>Após realizar todas essas transformações, os dataframes foram salvos em arquivos CSV distintos, um para
-				os dados sobre o clima atual e outro para os dados de previsão. Esses arquivos foram salvos na pasta
-				silver do mesmo bucket, separados nas pastas forecast e real. </p>
+			<p>
+				After performing all these transformations, the dataframes were saved as separate CSV files—one for the current weather data and another for the forecast data. These files were saved in the silver folder of the same bucket, separated into the forecast and real folders.
+			</p>
 			<pre><code class="language-python">
 # == save dataframes ==
 name_file = obj.split('/')[-1]
@@ -253,16 +240,12 @@ df_forecast.to_csv(f'gs://{bucket_name}/silver/forecast/forecast-{name_file}', i
 			</br>
 
 			<!-- Upload dos dados no BigQuery -->
-			<h2>Upload dos dados no BigQuery</h2>
+			<h2>Data upload to BigQuery</h2>
 			<p>
-				Da mesma forma que para a cloud function de processamento dos dados, as cloud functions para upload dos dados no BigQuery eram ativadas assim que um arquivo fosse carregado nas respectivas pastas.
-				As functions <code>upload_forecast_sao_carlos_weather</code> e <code>upload_real_sao_carlos_weather</code> iniciavam da mesma maneira que a function anterior: 
-				realizando a verificação do objeto que foi salvo no bucket. Caso o objeto tivesse o prefixo correto, o upload dos dados no BigQuery era iniciado.
+				Similar to the data processing cloud function, the cloud functions for uploading data to BigQuery were triggered as soon as a file was uploaded to their respective folders. The functions <code>upload_forecast_sao_carlos_weather</code> and <code>upload_real_sao_carlos_weather</code> started in the same way as the previous function: by verifying the object saved in the bucket. If the object had the correct prefix, the data upload to BigQuery was initiated.
 			</p>
 			<p>
-				Ambas as tabelas no BigQuery, <code>tempo_real</code> e <code>tempo_forecast</code>, foram criadas já com o schema predefinido. 
-				Além disso, foram criadas com a configuração de <code>WRITE_APPEND</code>, de forma que os dados fossem sempre acrescentados ao final da tabela em questão.
-				Dessa forma, as tabelas nunca seriam substituídas, mas sempre acrescidas de uma ou mais linhas por dia.
+				Both tables in BigQuery, <code>tempo_real</code> and <code>tempo_forecast</code>, were created with a predefined schema. Additionally, they were set up with the <code>WRITE_APPEND</code> configuration, ensuring that data was always appended to the end of the table rather than replacing it. In this way, the tables would never be overwritten, but would always be appended with one or more rows per day.
 			</p>
 			<pre><code class="language-python">
 import functions_framework from google.cloud 
@@ -353,25 +336,25 @@ def upload_forecast_sao_carlos_weather(cloud_event=None):
 			</br>
 
 			<!-- Tabelas no BigQuery -->
-			<h2>Tabelas no BigQuery</h2>
+			<h2>Tables in BigQuery</h2>
 			<p>
-				Por fim, as tabelas <code>tempo_real</code> e <code>tempo_forecast</code> foram criada no BigQuery e populadas com os dados obtidos pela API.
+				Finally, the <code>tempo_real</code> and <code>tempo_forecast</code> tables were created in BigQuery and populated with the data obtained from the API.
 			</p>
 			<p>
-				Tabela <code>tempo_real</code>:
+				<strong><code>tempo_real</code> table:</strong>
 			</p>
 			<span class="image fit no-overlay"><img src="images/projetos/projeto-api/05_11.png" alt=""></span>
 			<p>
-				Tabela <code>tempo_forecast</code>:
+				<strong><code>tempo_forecast</code> table:</strong>
 			</p>
 			<span class="image fit no-overlay"><img src="images/projetos/projeto-api/05_10.png" alt=""></span>
 			<p>
-				Dessa forma, consultas utilizando a linguagem SQL podem ser feitas para analisar os dados obtidos.
+				This setup allows SQL queries to be performed for analyzing the retrieved data.
 			</p>
 			<span class="image fit no-overlay"><img src="images/projetos/projeto-api/05_12.png" alt=""></span>
 		</section>
 		<ul class="actions">
-			<li><a href="portfolio.html" class="button icon solid fa-arrow-left">Voltar</a></li>
+			<li><a href="portfolio.html" class="button icon solid fa-arrow-left">Back</a></li>
 		</ul>
 	</div>
 

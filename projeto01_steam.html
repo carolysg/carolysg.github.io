@@ -8,7 +8,7 @@
 
 <head>
 	<!-- COLOCAR O NOME DO PROJETO AQUI -->
-	<title>Projeto Análise de Jogos da Steam</title>
+	<title>Steam games analysis project</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="icon" type="image/x-icon" href="/images/icons/favicon.ico">
@@ -33,10 +33,10 @@
 		<div class="inner">
 			<a href="#" class="image avatar"><img src="images/img01.png" alt="" /></a>
 			<ul class="sidebar">
-				<li><a href="index.html" class="sidebar-link">Início</a></li>
-				<li><a href="sobre.html" class="sidebar-link">Sobre mim</a></li>
-				<li><a href="portfolio.html" class="sidebar-link">Projetos</a></li>
-				<li><a href="certificados.html" class="sidebar-link">Certificados</a></li>
+				<li><a href="index.html" class="sidebar-link">Home</a></li>
+				<li><a href="sobre.html" class="sidebar-link">About me</a></li>
+				<li><a href="portfolio.html" class="sidebar-link">Projects</a></li>
+				<li><a href="certificados.html" class="sidebar-link">Certificates</a></li>
 			</ul>
 		</div>
 	</header>
@@ -46,11 +46,11 @@
 		<section id="projeto-header">
 			<header class="major">
 				<div class="col-12"></div>
-				<h2>Projeto Análise de Jogos da Steam</h2>
+				<h2>Steam games analysis project</h2>
 			</header>
 			<ul class="actions fit small">
 				<li>
-					<a href="https://github.com/carolysg/steam_games" class="button icon brands small fit fa-github solid" target="_blank">Repositório do Github</a>
+					<a href="https://github.com/carolysg/steam_games" class="button icon brands small fit fa-github solid" target="_blank">Github repository</a>
 				</li>
 				<li>
 					<a href="https://www.kaggle.com/datasets/antonkozyriev/game-recommendations-on-steam?select=games.csv" class="button fit small"  target="_blank">Dataset</a>
@@ -59,13 +59,13 @@
 		</section>
 		<!-- BLOCO DE CONTEUDO -->
 		<section id="sobre">
-			<h2>Sobre o projeto</h2>
-			<p><span class="image right"><img src="images/thumbs_proj/game.jpg" alt=""></span>
-				Este é o projeto final do módulo Banco de Dados I do curso da Ada Tech - LM Tech Data Talents.
+			<h2>About the project</h2>
+			<p><span class="image right"><img src="images/thumbs/steam.png" alt=""></span>
+				This is the final project for the Database I module of the Ada Tech - LM Tech Data Talents course.
 			</p>
 			<p>
-				O projeto utilizou uma base de dados com informações sobre jogos da Steam, obtida no Kaggle.
-				3 tabelas diferentes foram utilizadas: games, users e recommendations.
+				The project used a dataset with information about Steam games, obtained from Kaggle.
+				Three different tables were used: games, users, and recommendations.
 			</p>
 			<ul>
 				<li>Games: app_id, title, date_release, win, mac, linux, rating, positive_ratio, user_reviews, price_final</li>
@@ -73,13 +73,13 @@
 				<li>Recommendations: app_id, date, is_recommended, hours, user_id, review_id</li>
 			</ul>
 			<p>
-				O projeto foi realizado em dupla - mais informações podem ser encontradas no repositório do Github.
+				The project was carried out in pairs—more information can be found in the GitHub repository.
 			</p>
 
-			<h2>Conexão com o PostgreSQL</h2>
+			<h2>Connection with PostgreSQL</h2>
 			<p>
-				Inicialmente, todas as tabelas foram criadas no PostgreSQL. 
-				Para realizar as queries utilizando o Python, foi necessário criar uma conexão utilizando psycopg2.
+				Initially, all tables were created in PostgreSQL. 
+				To perform the queries using Python, it was necessary to create a connection using psycopg2.
 			</p>
 			<pre><code class="language-python">
 import pandas as pd
@@ -95,13 +95,13 @@ conn = psycopg2.connect(
 			</code></pre>
 			</br>
 
-			<h2>Etapas iniciais</h2>
+			<h2>Initial steps</h2>
 			<p>
-				Para cada uma das tabelas, foram verificados os tipos de dados, a quantidade de valores nulos e a quantidade de valores únicos.
-				Abaixo, seguem as queries de exemplo para a tabela Games:
+				For each of the tables, the data types, number of missing values, and number of unique values were checked.
+				Below are some example queries for the Games table:
 			</p>
 			<pre><code class="language-python">
-# tipos de dados
+# data types
 query = """
 SELECT 
     COLUMN_NAME, DATA_TYPE 
@@ -111,7 +111,7 @@ WHERE table_schema = 'public' and table_name = 'games'
 """
 df = pd.read_sql_query(query, con = conn)
 
-# quantidade de nulos
+# number of missing values
 query = """
 SELECT 
   COUNT(CASE WHEN app_id IS NULL THEN 1 END) AS null_app_id,
@@ -128,7 +128,7 @@ FROM games;
 """
 df = pd.read_sql_query(query, con = conn)
 
-# quantidade de valores únicos
+# number of unique values
 query = """
 SELECT
     COUNT (DISTINCT title) AS unique_title,
@@ -140,12 +140,13 @@ df = pd.read_sql_query(query, con = conn)
 			</code></pre>
 			</br>
 
-			<h2>Análise dos dados</h2>
+			<h2>Data analysis</h2>
 			<p>
-				Com o intuito de entender melhor os dados, algumas perguntas foram feitas:
+				To better understand the data, some questions were posed:
 			</p>
-			<ol>
-				<li>Quais são os 5 jogos mais caros e quando foram lançados? Caso os jogos possuam valor igual, ordenar por data de lançamento mais antiga.</li>
+			<ul>
+				<li>What are the 5 most expensive games and when were they released? If the games have the same price, order them by the oldest release date.</li>
+			</ul>
 				<pre><code class="language-python">
 query = """
 SELECT
@@ -159,7 +160,7 @@ LIMIT 5;
 			</br>
 		</br>
 
-				<li>Quais são os 5 jogos (não gratuitos) mais baratos e quando foram lançados? Caso os jogos possuam valor igual, ordenar por data de lançamento mais antiga.</li>
+				<li>What are the 5 cheapest (non-free) games and when were they released? If the games have the same price, order them by the oldest release date.</li>
 				<pre><code class="language-python">
 query = """
 SELECT
@@ -174,7 +175,7 @@ LIMIT 5;
 			</br>
 		</br>
 
-				<li>Quais são os 10 jogos mais bem avaliados (avaliação "very positive") e com maior quantidade de reviews? São jogos pagos ou gratuitos?</li>
+				<li>What are the 10 highest-rated games (“very positive” rating) with the most reviews? Are they paid or free games?</li>
 				<pre><code class="language-python">
 query = """
 SELECT
@@ -189,7 +190,7 @@ LIMIT 10
 			</br>
 		</br>
 
-				<li>Quantos jogos rodam nos três sistemas operacionais?</li>
+				<li>How many games run on all three operating systems?</li>
 				<pre><code class="language-python">
 query = """
 SELECT
@@ -202,7 +203,7 @@ WHERE (win = True) and (mac = True) and (linux = True)
 			</br>
 		</br>
 			
-				<li>Quais são os 10 jogos com a maior quantidade de recomendações positivas?</li>
+				<li>What are the 10 games with the highest number of positive recommendations?</li>
 				<pre><code class="language-python">
 query = """
 SELECT
@@ -221,7 +222,7 @@ LIMIT 10
 			</br>
 		</br>
 
-				<li>Qual é o id do usuário que fez mais recomendações?</li>
+				<li>What is the user ID of the person who made the most recommendations?</li>
 				<pre><code class="language-python">
 query = """
 SELECT
@@ -235,7 +236,7 @@ LIMIT 1
 			</br>
 		</br>
 
-				<li>Quantos jogos possui o usuário que mais fez recomendações?</li>
+				<li>How many games does the user who made the most recommendations own?</li>
 				<pre><code class="language-python">
 query = """
 SELECT
@@ -253,7 +254,7 @@ WHERE user_id = (
 			</br>
 		</br>
 
-				<li>Quantos jogos foram lançados em cada ano?</li>
+				<li>How many games were released in each year?</li>
 				<pre><code class="language-python">
 query = """
 SELECT
@@ -266,7 +267,7 @@ ORDER BY year ASC
 				<span class="image no-overlay"><img src="images/projetos/jogos-steam/01_08.png" alt="" /></span>
 			</br>
 		</br>
-				<li>Quais são os 10 jogos com maior quantidade de horas jogadas?</li>
+				<li>What are the 10 games with the highest number of hours played?</li>
 				<pre><code class="language-python">
 query = """
 SELECT
@@ -284,8 +285,7 @@ LIMIT 10
 			</br>
 		</br>
 
-				<li>Qual a média mensal de horas jogadas em 2022 do jogo com maior quantidade de horas jogadas? 
-					Ou seja, a média mensal de horas jogadas em 2022 do jogo "Rust", de acordo com a questão anterior.</li>
+				<li>What is the monthly average of hours played in 2022 for the game with the highest number of hours played? In other words, the monthly average of hours played in 2022 for the game "Rust," according to the previous question.</li>
 					<pre><code class="language-python">
 query = """
 SELECT
@@ -317,7 +317,7 @@ ORDER BY month
 		</section>
 		<!-- FIM DO BLOCO DE CONTEUDO -->
 		<ul class="actions">
-			<li><a href="portfolio.html" class="button icon solid fa-arrow-left">Voltar</a></li>
+			<li><a href="portfolio.html" class="button icon solid fa-arrow-left">Back</a></li>
 		</ul>
 	</div>
 

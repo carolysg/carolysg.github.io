@@ -7,7 +7,7 @@
 <html>
 
 <head>
-	<title>Projeto Investidores</title>
+	<title>Investors project</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="icon" type="image/x-icon" href="/images/icons/favicon.ico">
@@ -32,10 +32,10 @@
 		<div class="inner">
 			<a href="#" class="image avatar"><img src="images/img01.png" alt="" /></a>
 			<ul class="sidebar">
-				<li><a href="index.html" class="sidebar-link">Início</a></li>
-				<li><a href="sobre.html" class="sidebar-link">Sobre mim</a></li>
-				<li><a href="portfolio.html" class="sidebar-link">Projetos</a></li>
-				<li><a href="certificados.html" class="sidebar-link">Certificados</a></li>
+				<li><a href="index.html" class="sidebar-link">Home</a></li>
+				<li><a href="sobre.html" class="sidebar-link">About me</a></li>
+				<li><a href="portfolio.html" class="sidebar-link">Projects</a></li>
+				<li><a href="certificados.html" class="sidebar-link">Certificates</a></li>
 			</ul>
 		</div>
 	</header>
@@ -45,147 +45,140 @@
 		<section id="projeto-header">
 			<header class="major">
 				<div class="col-12"></div>
-				<h2>Análise de dados fictícios de investidores</h2>
+				<h2>Analysis of fictitious investor data</h2>
 			</header>
 			<ul class="actions fit small">
 				<li>
 					<a href="https://github.com/PeterRibs/analiseInvestidores"
-						class="button icon brands small fit fa-github solid" target="_blank">Repositório do Github</a>
+						class="button icon brands small fit fa-github solid" target="_blank">Github repository</a>
 				</li>
 			</ul>
 		</section>
 		<!-- Conteúdo vai aqui -->
 		<section id="sobre">
 			<!-- Sobre o projeto -->
-			<h2>Sobre o projeto</h2>
-			<p><span class="image right no-overlay"><img src="images/thumbs_proj/investidores.jpg" alt=""></span>
-				Este é o projeto final do módulo Técnicas de Programação I do curso da Ada Tech - LM Tech Data Talents.
+			<h2>About the project</h2>
+			<p><span class="image right no-overlay"><img src="images/thumbs/investidores.png" alt=""></span>
+				This is the final project for the Programming Techniques I module of the Ada Tech - LM Tech Data Talents course.
 				<br></p>
-			<p></p>O projeto consiste na análise de dados acerca de investidores. <br>
-				São 3 arquivos CSV, sendo um de cadastro e dois de investimentos, conforme mostrado abaixo:
+			<p>
+				The project involves analyzing data about investors. <br>
+				There are three CSV files: one with investor information and two with investment data, as shown below:
 			</p>
 			<ul>
-				Cadastro (características dos investidores):
-				<li>id : Identificação do investidor</li>
-				<li>Nome : Nome completo do investidor</li>
-				<li>Sexo : Feminino ou masculino</li>
-				<li>Nasc : Data de nascimento</li>
-				<li>Idade : Idade do investidor</li>
-				<li>Email : E-mail do investidor</li>
-				<li>Lat_long : Dados geográficos do investidor</li>
-				<li>Job : Profissão do investidor ou do seu responsável (em inglês)</li>
-				<li>Estado : Estado onde o investidor reside</li>
+				Investor Registration (investor characteristics):
+				<li>id: Investor's ID</li>
+				<li>Nome: Investor's full name</li>
+				<li>Sexo: Female or male</li>
+				<li>Nasc: Date of birth</li>
+				<li>Idade: Investor's age</li>
+				<li>Email: Investor's email</li>
+				<li>Lat_long: Geographic data of the investor</li>
+				<li>Job: Investor's or guardian's profession (in English)</li>
+				<li>Estado: State of residence</li>
 				<br>
-				Investimento (características dos investimentos):
-				<li>id : Identificação do investidor</li>
-				<li>Salario : Renda do investidor ou seu responsável</li>
-				<li>Perfil : Perfil de investimento</li>
-				<li>Ativo01, Ativo02, Ativo03, Ativo04, Ativo05, Ativo06, Ativo07 : O quanto de dinheiro o investidor
-					colocou em cada ativo</li>
-				<li>Nota1, Nota2 : O quanto o investidor está satisfeito com nossa empresa (2 avaliações)</li>
+				Investment Data (investment characteristics):
+				<li>id: Investor's ID</li>
+				<li>Salario: Investor's or guardian's income</li>
+				<li>Perfil: Investment profile</li>
+				<li>Ativo01, Ativo02, Ativo03, Ativo04, Ativo05, Ativo06, Ativo07: Amount of money the investor put in each asset</li>
+				<li>Nota1, Nota2: Investor's satisfaction ratings with our company (two evaluations)</li>
 			</ul>
-			<p>O projeto foi realizado em grupo (3 pessoas) e os membros podem ser observados no repositório do Github.
-			</p>
+			<p>The project was carried out in a group (3 people), and the team members can be found in the GitHub repository.</p>
 
-			<h2>Etapas iniciais</h2>
+
+			<h2>Initial steps</h2>
 			<p>
-				O primeiro passo foi importar as bibliotecas necessárias, abrir os arquivos CSV e verificar como estavam
-				os dados.
+				The first step was to import the necessary libraries, open the CSV files, and check the data.
 			</p>
-			<p>Arquivo de cadastros:</p>
+			<p>Registration file:</p>
 			<span class="image fit no-overlay"><img src="images/projetos/investidores/02_01.png" alt="" /></span>
-			<p>Arquivo de investimentos 1:</p>
+			<p>Investment file 1:</p>
 			<span class="image fit no-overlay"><img src="images/projetos/investidores/02_02.png" alt="" /></span>
-			<p>Arquivo de investimentos 2:</p>
+			<p>Investment file 2:</p>
 			<span class="image fit no-overlay"><img src="images/projetos/investidores/02_03.png" alt="" /></span>
-			<p> As bases de investimentos foram concatenadas e as linhas duplicadas foram removidas, resultando em um
-				dataframe com 38754 linhas e 12 colunas: </p>
+			<p>
+				The investment datasets were concatenated and duplicate rows were removed, resulting in a dataframe with 38,754 rows and 12 columns:
+			</p>
 			<span class="image fit no-overlay"><img src="images/projetos/investidores/02_04.png" alt="" /></span>
-			<p> Depois, o dataframe de cadastro também foi concatenado ao dataframe de investimentos utilizando a chave
-				"id". Dessa forma, as análises se tornam mais fáceis, limitadas a um único dataframe. Antes de iniciar
-				as análises de fato, verificou-se a quantidade de dados faltantes no dataframe. </p>
+			<p>
+				Then, the registration dataframe was also concatenated with the investment dataframe using the “id” key. This made the analysis easier by working with a single dataframe. Before starting the actual analysis, we checked for missing data in the dataframe.
+			</p>
 			<span class="image fit no-overlay"><img src="images/projetos/investidores/02_05.png" alt="" /></span>
 			<p>
-				O tratamento de valores nulos seguiu a seguinte lógica:
+				The handling of missing values followed this logic:
 			</p>
 			<ul>
-				<li>Para as colunas de ativos (Ativo01 até Ativo07), substituímos os valores faltantes por zero, já que
-					um investimento de R$ 0,00 é a mesma coisa que não colocar nenhum valor no ativo.</li>
-				<li>Para as notas (Nota1 e Nota2), quando pelo menos uma das notas foi dada, adicionamos as notas que
-					foram dadas na outra amostragem pelo mesmo participante.</li>
-				<li>Quando as duas notas eram faltantes, o valor foi preenchido com a média de cada uma das notas (das
-					outras pessoas).</li>
+				<li>For the asset columns (Ativo01 to Ativo07), missing values were replaced with zero, since an investment of R$0.00 is essentially the same as not investing in that asset.</li>
+				<li>For the ratings (Nota1 and Nota2), if at least one of the ratings was given, the given ratings from the other evaluation by the same participant were used to fill in the gaps.</li>
+				<li>If both ratings were missing, the missing values were replaced with the mean of each rating from the other participants.</li>
 			</ul>
-			<p> Dessa forma, todos os valores nulos foram preenchidos. </p>
+			<p> In this way, all missing values were filled in. </p>
 			<span class="image fit no-overlay"><img src="images/projetos/investidores/02_06.png" alt="" /></span>
 
-			<h2>Manipulação de dados e análise exploratória</h2>
+			<h2>Data manipulation and exploratory analysis</h2>
 			<p>
-				Para entender melhor o comportamento dos dados, uma descrição das variáveis numéricas foi realizada:
+				To better understand the behavior of the data, a description of the numerical variables was conducted:
 			</p>
 			<span class="image fit no-overlay"><img src="images/projetos/investidores/02_07.png" alt="" /></span>
 			<p>
-				Após todas as alterações realizadas, o dataframe final ficou com a seguinte estrutura:
+				After all the changes, the final dataframe had the following structure:
 			</p>
 			<span class="image fit no-overlay"><img src="images/projetos/investidores/02_08.png" alt="" /></span>
 			<p>
-				A partir daqui, algumas manipulações foram feitas com o intuito de explorar os dados e melhorar seu
-				entendimento:
+				From here, some manipulations were made to explore the data and improve understanding:
 			</p>
 			<ul>
-				<li>Criação da coluna "Total" com a soma do valor de todos os ativos por investidor.</li>
-				<li>Criação da coluna "Média" com a média das notas 1 e 2.</li>
-				<li>Criação da coluna "Domínio" com o domínio do e-mail de cada investidor.</li>
-				<li>Alteração da coluna "Salário" para "Renda", alterando o tipo da coluna para numérica.</li>
-				<li>Alteração dos valores da coluna "Sexo" para "Masculino" e "Feminino".</li>
+				<li>Creation of the "Total" column with the sum of all asset values for each investor.</li>
+				<li>Creation of the "Média" column with the average of ratings 1 and 2.</li>
+				<li>Creation of the "Domínio" column with the email domain of each investor.</li>
+				<li>Renaming the "Salário" column to "Renda" and changing its type to numeric.</li>
+				<li>Changing the values in the "Sexo" column to "Masculino" and "Feminino".</li>
 			</ul>
 			<span class="image fit no-overlay"><img src="images/projetos/investidores/02_09.png" alt="" /></span>
 			<p>
-				A coluna "Média" foi então transformada em número inteiro e uma nova coluna "NPS" foi criada. Essa
-				coluna mostra se o investidor é promotor, neutro ou detrator, de acordo com a seguinte regra:
+				The "Média" column was then converted to an integer, and a new column, "NPS," was created. This column indicates whether the investor is a promoter, neutral, or detractor, based on the following rules:
 			</p> 
 			<p>
 			<span class="image no-overlay"><img src="images/projetos/investidores/02_10.png" alt="" /></span></p>
 			<p>
 			<ul>
-				<li>Promotor: média das notas maior ou igual a 80.</li>
-				<li>Neutro: média das notas entre 50 e 79.</li>
-				<li>Detrator: média das notas inferior a 50.</li>
+				<li>Promoter: average rating greater than or equal to 80.</li>
+				<li>Neutral: average rating between 50 and 79.</li>
+				<li>Detractor: average rating below 50.</li>
 			</ul></p>
 
-			<h2>Análise dos dados</h2>
+			<h2>Data analysis</h2>
 			<p>
-				Com o intuito de realizar uma análise dos dados, algumas perguntas foram respondidas:
+				To conduct a data analysis, some questions were answered:
 			</p>
-			<li>Qual o total investido em cada ativo?</li>
-			<p>O ativo 4 teve o maior valor total investido, enquanto o ativo 7 teve o menor.</p>
+			<li>What is the total amount invested in each asset?</li>
+			<p>Asset 4 had the highest total investment value, while asset 7 had the lowest.</p>
 			<span class="image no-overlay"><img src="images/projetos/investidores/02_11.png" alt="" /></span>
 			<p></p>
-			<li>Qual o menor valor investido em cada ativo?</li>
-			<p>Para os ativos 1, 2, 3, 4, 5 e 6, o menor valor investido foi de R$ 0. O ativo 7, por sua vez, teve como
-				menor valor investido R$ 462,93.</p>
+			<li>What is the lowest investment in each asset?</li>
+			<p>For assets 1, 2, 3, 4, 5, and 6, the lowest investment was R$ 0. For asset 7, the lowest investment was R$ 462.93.</p>
 			<span class="image no-overlay"><img src="images/projetos/investidores/02_12.png" alt="" /></span>
 			<p></p>
-			<li>Qual a média de valor investido em cada ativo?</li>
-			<p>O ativo 4 teve o maior valor médio de investimento (R$ 10.505), enquando o ativo 7 teve o menor (R$ 500).
-			</p>
+			<li>What is the average investment value in each asset?</li>
+			<p>Asset 4 had the highest average investment (R$ 10,505), while asset 7 had the lowest (R$ 500).</p>
 			<span class="image no-overlay"><img src="images/projetos/investidores/02_13.png" alt="" /></span>
 			<p></p>
-			<li>Qual a idade do investidor mais velho?</li>
-			<p>O investidor mais velho tem 51 anos.</p>
-			<li>Quantos investidores são promotores? E quantos são do sexo feminino?</li>
-			<p>3669 investidores são promotores. 19385 investidores são mulheres.</p>
-			<li>Quantos investidores do sexo feminino tem mais de 25 anos e investiram menos de R$ 10.000?</li>
-			<p>442 investidores são mulheres, tem mais de 25 anos e investiram menos de R$ 10.000.</p>
-			<li>Qual é a soma do total investido por cada estado?</li>
+			<li>What is the age of the oldest investor?</li>
+			<p>The oldest investor is 51 years old.</p>
+			<li>How many investors are promoters? And how many are female?</li>
+			<p>There are 3,669 promoters. There are 19,385 female investors.</p>
+			<li>How many female investors are over 25 years old and invested less than R$ 10,000?</li>
+			<p>442 investors are female, over 25 years old, and invested less than R$ 10,000.</p>
+			<li>What is the total amount invested by each state?</li>
 			<span class="image no-overlay"><img src="images/projetos/investidores/02_14.png" alt="" /></span>
 			<p></p>
-			<li>Como os investidores se distribuem em promotores, detratores e neutros?</li>
-			<p>Os investidores se dividem em 3669 promotores, 15477 neutros e 19608 detratores.</p>
+			<li>How are investors distributed among promoters, detractors, and neutrals?</li>
+			<p>Investors are divided into 3,669 promoters, 15,477 neutrals, and 19,608 detractors.</p>
 
 		</section>
 		<ul class="actions">
-			<li><a href="portfolio.html" class="button icon solid fa-arrow-left">Voltar</a></li>
+			<li><a href="portfolio.html" class="button icon solid fa-arrow-left">Back</a></li>
 		</ul>
 	</div>
 

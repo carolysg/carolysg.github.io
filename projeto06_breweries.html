@@ -7,7 +7,7 @@
 <html>
 
 <head>
-	<title>Projeto cervejarias</title>
+	<title>Brewery project</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="icon" type="image/x-icon" href="/images/icons/favicon.ico">
@@ -32,10 +32,10 @@
 		<div class="inner">
 			<a href="#" class="image avatar"><img src="images/img01.png" alt="" /></a>
 			<ul class="sidebar">
-				<li><a href="index.html" class="sidebar-link">Início</a></li>
-				<li><a href="sobre.html" class="sidebar-link">Sobre mim</a></li>
-				<li><a href="portfolio.html" class="sidebar-link">Projetos</a></li>
-				<li><a href="certificados.html" class="sidebar-link">Certificados</a></li>
+				<li><a href="index.html" class="sidebar-link">Home</a></li>
+				<li><a href="sobre.html" class="sidebar-link">About me</a></li>
+				<li><a href="portfolio.html" class="sidebar-link">Projects</a></li>
+				<li><a href="certificados.html" class="sidebar-link">Certificates</a></li>
 			</ul>
 		</div>
 	</header>
@@ -45,15 +45,15 @@
 		<section id="projeto-header">
 			<header class="major">
 				<div class="col-12"></div>
-				<h2>Extração e análise de dados de cervejarias</h2>
+				<h2>Brewery data extraction and analysis</h2>
 			</header>
 			<ul class="actions fit small">
 				<li>
 					<a href="https://github.com/carolysg/breweries"
-						class="button icon brands small fit fa-github solid" target="_blank">Repositório do Github</a>
+						class="button icon brands small fit fa-github solid" target="_blank">Github repository</a>
 				</li>
 				<li>
-					<a href="https://www.openbrewerydb.org/" class="button fit small" target="_blank">Site da API</a>
+					<a href="https://www.openbrewerydb.org/" class="button fit small" target="_blank">API website</a>
 				</li>
 			</ul>
 		</section>
@@ -61,69 +61,81 @@
 		<!-- Conteúdo vai aqui -->
 		<section id="sobre">
 			<!-- Sobre o projeto -->
-			<h2>Sobre o projeto</h2>
+			<h2>About the project</h2>
 			<p> <span class="image right"><img src="images/thumbs_proj/breweries.jpg" alt=""></span>
-				Este projeto consiste em um pipeline projetado para extrair, processar e armazenar dados de cervejarias obtidos pela API Open Brewery DB. O projeto utiliza Apache Airflow para orquestrar o pipeline de dados, garantindo que cada etapa seja executada de maneira confiável e repetível. Neste projeto, as seguintes ferramentas foram utilizadas:
+				This project involves a pipeline designed to extract, process, and store data on breweries obtained from the Open Brewery DB API. The project uses Apache Airflow to orchestrate the data pipeline, ensuring that each step is executed reliably and consistently. The following tools were used in this project:
 			</p>
 			<ul>
-				<li>VSCode: editor de código usado para desenvolvimento.</li>
-				<li>Git/GitHub: controle de versão.</li>
-				<li>Docker: containerização para ambientes consistentes.</li>
-				<li>Postgres: banco de dados relacional para persistir os dados agregados.</li>
-				<li>Airflow: ferramenta de gerenciamento de fluxo de trabalho para agendamento e monitoramento do pipeline.</li>
-				<li>Python 3.9: linguagem de programação utilizada para o desenvolvimento.</li>
+				<li>VSCode: the code editor used for development.</li>
+				<li>Git/GitHub: for version control.</li>
+				<li>Docker: for containerization to ensure consistent environments.</li>
+				<li>Postgres: a relational database to store the aggregated data.</li>
+				<li>Airflow: a workflow management tool for scheduling and monitoring the pipeline.</li>
+				<li>Python 3.9: the programming language used for development.</li>
 			</ul>
-			<p> A arquitetura do projeto é apresentada no fluxograma abaixo: </p>
+			<p> The project architecture is presented in the diagram below: </p>
 			<span class="image fit no-overlay"><img src="images/projetos/cervejarias/06_01.png" alt=""></span>
 
 			<!-- Estrutura -->
-			<h2>Estrutura do projeto</h2>
-			<p>O processo de ETL começa extraindo dados da API, armazenando-os em três estágios (bronze, prata e ouro) e, finalmente, carregando-os em um banco de dados PostgreSQL. O Apache Airflow orquestra todo o pipeline, gerenciando o fluxo desde a extração até a transformação e carregamento.</p>
+			<h2>Project structure</h2>
+			<p>
+				The ETL process begins by extracting data from the API, storing it in three stages (bronze, silver, and gold), and finally loading it into a PostgreSQL database. Apache Airflow orchestrates the entire pipeline, managing the flow from extraction to transformation and loading.
+			</p>
 			<ul>
-				<li>API: os dados são obtidos de uma fonte externa usando requests em um script Python.</li>
-				<li>Bronze: os dados brutos são salvos no formato JSON.</li>
-				<li>Prata: os dados transformados são armazenados.</li>
-				<li>Ouro: os dados agregados são armazenados aqui. O resultado final é uma tabela agregada com a quantidade de cervejarias por tipo e localização.</li>
-				<li>Postgres: os dados agregados são carregados no banco de dados PostgreSQL para uso posterior.</li>
+				<li>API: data is obtained from an external source using Python requests in a script.</li>
+				<li>Bronze: raw data is saved in JSON format.</li>
+				<li>Silver: transformed data is stored here.</li>
+				<li>Gold: aggregated data is stored here. The final result is an aggregated table showing the number of breweries by type and location.</li>
+				<li>Postgres: aggregated data is loaded into the PostgreSQL database for further use.</li>
 			</ul>
-			<p>Para garantir a confiabilidade do pipeline, foram implementados mecanismos de monitoramento e alerta. Os registros são integrados em todo o processo para rastrear sucessos e falhas, enquanto o tratamento de erros captura quaisquer problemas durante a extração, transformação ou carregamento de dados.</p>
-			<p>O Airflow está programado para ser executado todos os dias, com um <code>schedule_interval</code> definido como <code>timedelta(days=1)</code>. Este intervalo pode ser alterado na definição da DAG.</p>
-			<p>A estrutura do projeto está organizada da seguinte forma:</p>
+			<p>
+				To ensure the reliability of the pipeline, monitoring and alerting mechanisms have been implemented. Logs are integrated throughout the process to track successes and failures, while error handling captures any issues that arise during extraction, transformation, or loading of data.
+			</p>
+			<p>
+				Airflow is scheduled to run every day, with a <code>schedule_interval</code> set to <code>timedelta(days=1)</code>. This interval can be changed in the DAG definition.
+			</p>
+			<p>
+				The project structure is organized as follows:
+			</p>
 			<pre><code class="language-python">
 				breweries/
 				├── dags/
-				│   └── brewery_pipeline.py     # DAG principal
+				│   └── brewery_pipeline.py     # Main DAG
 				├── data/
-				│   ├── bronze/                 # Dados brutos
-				│   ├── silver/                 # Dados processados
-				│   └── gold/                   # Dados agregados
-				├── docs/                      # Documentações extras sobre os dados
-				├── images/                    # Imagens
-				├── logs/                      # Logs de execução
+				│   ├── bronze/                 # Raw data
+				│   ├── silver/                 # Processed data
+				│   └── gold/                   # Aggregated data
+				├── docs/                      # Additional data documentation
+				├── images/                    # Images
+				├── logs/                      # Execution logs
 				├── scripts/       
-				│   └── airflow-entrypoint.sh   # Script para o Airflow
-				├── requirements.txt           # Dependências
-				├── .env                       # Variáveis de ambiente
-				├── Dockerfile                 # Dockerfile para Airflow e dependências
-				├── docker-compose.yml         # Configurações do Docker Compose
-				└── README.md                  # Documentação
+				│   └── airflow-entrypoint.sh   # Script for Airflow
+				├── requirements.txt           # Dependencies
+				├── .env                       # Environment variables
+				├── Dockerfile                 # Dockerfile for Airflow and dependencies
+				├── docker-compose.yml         # Docker Compose configurations
+				└── README.md                  # Documentation
 			</code></pre>
 			<br>
 
 			<!-- Configurações -->
-			<h2>Arquivos de configuração</h2>
-			<p>Neste projeto, os seguintes arquivos de configuração foram utilizados:</p>
+			<h2>Configuration files</h2>
+			<p>
+				In this project, the following configuration files were used:
+			</p>
 			<ul>
-				<li><code>.env</code>: variáveis de conexão com o banco de dados Postgres.</li>
-				<li><code>Dockerfile</code>: definições do contêiner para execução do Airflow.</li>
-				<li><code>docker-compose.yml</code>: configurações do Docker Compose, responsável pelos ambientes do Postgres e server.</li>
-				<li><code>/scripts/airflow-entrypoint.sh</code>: script de execução do Airflow.</li>
-				<li><code>requirements.txt</code>: todas as bibliotecas necessárias para a execução do pipeline.</li>
+				<li><code>.env</code>: contains the connection variables for the Postgres database.</li>
+				<li><code>Dockerfile</code>: defines the container settings for running Airflow.</li>
+				<li><code>docker-compose.yml</code>: Docker Compose configurations, managing the Postgres and server environments.</li>
+				<li><code>/scripts/airflow-entrypoint.sh</code>: script for executing Airflow.</li>
+				<li><code>requirements.txt</code>: lists all the libraries required for running the pipeline.</li>
 			</ul>
 
 			<!-- Extração e ingestão dos dados -->
-			<h2>Extração, processamento e agregação dos dados</h2>
-			<p>Todas as operações foram orquestradas pela DAG principal no Airflow. O primeiro passo na construção do script foi realizar as importações das bibliotecas, buscar as variáveis de ambiente disponíveis no arquivo <code>.env</code> e definir alguns argumentos de execução:</p>
+			<h2>Data extraction, processing and aggregation</h2>
+			<p>
+				All operations were orchestrated by the main DAG in Airflow. The first step in building the script was to import the necessary libraries, load the environment variables from the <code>.env</code> file, and define some execution arguments:
+			</p>
 			<pre><code class="language-python">
 from airflow import DAG
 from airflow.operators.python import PythonOperator
@@ -159,7 +171,9 @@ default_args = {
     'retry_delay': timedelta(minutes=5),
 }
 			</code></pre><br>
-			<p>A seguir, foram definidas duas funções: uma para a criação dos diretórios bronze, silver e gold, e outra para a extração dos dados pela API. O arquivo final obtido foi extraído no formato JSON e salvo na pasta bronze:</p>
+			<p>
+				Next, two functions were defined: one for creating the bronze, silver, and gold directories, and another for extracting data from the API. The final file obtained was extracted in JSON format and saved in the bronze folder:
+			</p>
 			<pre><code class="language-python">
 def create_dirs():
 	os.makedirs('./data/bronze', exist_ok=True)
@@ -190,7 +204,9 @@ def extract_brewery_data():
 		logging.error(f"Error extracting data: {e}")
 		raise
 			</code></pre><br>
-			<p>Posteriormente, a função de transformação dos dados faz a leitura do arquivo na pasta bronze e realiza alguns processamentos nos dados: exclusão de colunas vazias (caso existam), transformação de colunas em tipo float, transformação de caracteres em letras minúsculas e exclusão de colunas repetidas. Os dados transformados são salvos na pasta silver em formato parquet, particionados por país e estado/província.</p>
+			<p>
+				Afterwards, the data transformation function reads the file from the bronze folder and performs several processing steps: removing empty columns (if any), converting columns to float type, transforming characters to lowercase, and removing duplicate columns. The transformed data is saved in the silver folder in Parquet format, partitioned by country and state/province.
+			</p>
 			<pre><code class="language-python">
 def transform_data():
 	try:
@@ -209,7 +225,9 @@ def transform_data():
 		logging.error(f"Error transforming data: {e}")
 		raise
 			</code></pre><br>
-			<p>A partir dos dados transformados, uma função de agregação dos dados é responsável por agrupar os dados por estado e por tipo, resultando em uma tabela com três colunas: estado/província, tipo de cervejaria e quantidade de cervejarias. O arquivo final é salvo em formato parquet na pasta gold.</p>
+			<p>
+				Based on the transformed data, an aggregation function groups the data by state and type, resulting in a table with three columns: state/province, brewery type, and the number of breweries. The final file is saved in Parquet format in the gold folder.
+			</p>
 			<pre><code class="language-python">
 def aggregate_data():
 	try:
@@ -225,7 +243,9 @@ def aggregate_data():
 
 			<!-- Dados persistidos no Postgres -->
 			<h2>Postgres</h2>
-			<p>A tabela final presente na camada gold também é carregada em um banco de dados Postgres, com o intuito de facilitar consultas analíticas e integrar os dados a outras aplicações (caso seja necessário).</p>
+			<p>
+				The final table in the gold layer is also loaded into a Postgres database to facilitate analytical queries and integrate the data with other applications if needed.
+			</p>
 			<pre><code class="language-python">
 def create_breweries_table(conn):
 	with conn.cursor() as cursor:
@@ -263,8 +283,10 @@ def load_to_postgres():
 			</code></pre><br>
 
 			<!-- DAG -->
-			<h2>Execução das tarefas</h2>
-			<p>Por fim, cada uma das tasks foi criada utilizando o PythonOperator. As tasks são executadas de forma sequencial:</p>
+			<h2>Task execution</h2>
+			<p>
+				Finally, each of the tasks was created using the PythonOperator. The tasks are executed sequentially:
+			</p>
 			<pre><code class="language-python">
 with DAG('brewery_pipeline', default_args=default_args, schedule_interval=timedelta(days=1)) as dag:
 
@@ -292,13 +314,14 @@ with DAG('brewery_pipeline', default_args=default_args, schedule_interval=timede
 			</code></pre><br>
 
 			<!-- Instruções -->
-			<h2>Instruções de execução local</h2>
-			<p>Caso tenha interesse, o repositório no Github apresenta um passo a passo para a execução do projeto localmente.</p>
-
+			<h2>Local execution instructions</h2>
+			<p>
+				If you're interested, the repository on GitHub provides a step-by-step guide for running the project locally.
+			</p>
 		</section>
 
 		<ul class="actions">
-			<li><a href="portfolio.html" class="button icon solid fa-arrow-left">Voltar</a></li>
+			<li><a href="portfolio.html" class="button icon solid fa-arrow-left">Back</a></li>
 		</ul>
 	</div>
 

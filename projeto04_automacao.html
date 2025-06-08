@@ -8,7 +8,7 @@
 
 <head>
 	<!-- COLOCAR O NOME DO PROJETO AQUI -->
-	<title>Projeto Automação Web com Selenium</title>
+	<title>Web automation - Selenium</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="icon" type="image/x-icon" href="/images/icons/favicon.ico">
@@ -33,10 +33,10 @@
 		<div class="inner">
 			<a href="#" class="image avatar"><img src="images/img01.png" alt="" /></a>
 			<ul class="sidebar">
-				<li><a href="index.html" class="sidebar-link">Início</a></li>
-				<li><a href="sobre.html" class="sidebar-link">Sobre mim</a></li>
-				<li><a href="portfolio.html" class="sidebar-link">Projetos</a></li>
-				<li><a href="certificados.html" class="sidebar-link">Certificados</a></li>
+				<li><a href="index.html" class="sidebar-link">Home</a></li>
+				<li><a href="sobre.html" class="sidebar-link">About me</a></li>
+				<li><a href="portfolio.html" class="sidebar-link">Projects</a></li>
+				<li><a href="certificados.html" class="sidebar-link">Certificates</a></li>
 			</ul>
 		</div>
 	</header>
@@ -46,47 +46,46 @@
 		<section id="projeto-header">
 			<header class="major">
 				<div class="col-12"></div>
-				<h2>Projeto Automação Web com Selenium</h2>
+				<h2>Web automation project with Selenium</h2>
 			</header>
 			<ul class="actions fit small">
 				<li>
-					<a href="https://github.com/carolysg/auto-forms-selenium" class="button icon brands small fit fa-github solid" target="_blank">Repositório do Github</a>
+					<a href="https://github.com/carolysg/auto-forms-selenium" class="button icon brands small fit fa-github solid" target="_blank">Github repository</a>
 				</li>
 				<li>
-					<a href="https://www.saucedemo.com/" class="button fit small"  target="_blank">Site saucedemo</a>
+					<a href="https://www.saucedemo.com/" class="button fit small"  target="_blank">Saucedemo website</a>
 				</li>
 			</ul>
 		</section>
 		<!-- BLOCO DE CONTEUDO -->
 		<section id="sobre">
-			<h2>Sobre o projeto</h2>
+			<h2>About the project</h2>
 			<p><span class="image right"><img src="images/thumbs_proj/automacao.jpg" alt=""></span>
-				Esse projeto consiste em uma simulação de compras no site Saucedemo.
-				O projeto foi executando utilizando Python e Selenium.
+				This project consists of simulating purchases on the Saucedemo website. The project was carried out using Python and Selenium.
 			</p>
 			<p>
-				O principal objetivo desse projeto foi aprender a utilizar o Selenium para realizar diferentes tarefas.
+				The main goal of this project was to learn how to use Selenium to perform different tasks.
 			</p>
 		</br>
-			<h2>Definição de regras</h2>
-			<p>O site permite utilizar 6 usuários e uma única senha. Desses 6 usernames possíveis, 
-				apenas 1 não apresenta problemas ao logar e possibilita a compra de forma fluida. 
-				O código foi criado de forma que o username fosse escolhido aleatoriamente, da seguinte forma:
-				<ul>
-					<li>Se o usuário for o "problem_user", "performance_glitch_user", "error_user" ou o "visual_user", 
-						o programa faz o login mas logo em seguida realiza o logout pela barra lateral esquerda, 
-						escolhendo novamente outro username a ser testado;</li>
-					<li>Se o usuário for o "locked_out_user", o programa tenta fazer o login mas é impossibilitado e 
-						a página é recarregada para remover os valores dos campos, escolhendo novamente outro username a ser testado;</li>
-					<li>Se o usuário for o "standard_user", o programa realiza a compra normalmente.</li>
-				</ul>
-				Ou seja, o programa só finaliza quando consegue utilizar o username "standard_user" e finalizar a compra. 
-				A quantidade de itens a serem adicionados no carrinho é escolhida de forma aleatória, e os itens a serem escolhidos também.
+			<h2>Rule definition</h2>
+			<p>
+				The site allows for 6 users and a single password. Out of these 6 possible usernames, only one does not present issues when logging in and enables a smooth purchase. The code was designed to randomly choose a username as follows:
 			</p>
-			<h2>Apresentação dos códigos</h2>
-			<p>O primeiro passo para realizar a simulação de compra no site é criar o navegador e acessar a página web:</p>
+			<ul>
+				<li>If the user is "problem_user", "performance_glitch_user", "error_user", or "visual_user", the program logs in but then immediately logs out using the left sidebar and selects another username to test.</li>
+				<li>If the user is "locked_out_user", the program tries to log in but is blocked, so the page is refreshed to clear the field values, and another username is selected for testing.</li>
+				<li>If the user is "standard_user", the program completes the purchase normally.</li>
+			</ul>
+			<p>
+				In other words, the program only finishes when it successfully uses the "standard_user" username and completes the purchase. The number of items to be added to the cart is chosen randomly, as are the items themselves.
+			</p>
+
+			<h2>Code presentation</h2>
+			<p>
+				The first step in simulating a purchase on the website is to create the browser instance and access the webpage:
+			</p>
 			<pre><code class="language-python">
-# importando as bibliotecas
+# importing the libraries
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
@@ -96,105 +95,113 @@ from selenium.webdriver.common.alert import Alert
 import time
 import random
 
-# criando o navegador
-servico = Service(ChromeDriverManager().install())
-navegador = webdriver.Chrome(service=servico)
+# creating the browser instance
+service = Service(ChromeDriverManager().install())
+browser = webdriver.Chrome(service=service)
 
-# acessando a página
-navegador.get('https://www.saucedemo.com/')
+# accessing the webpage
+browser.get('https://www.saucedemo.com/')
 			</code></pre></br>
 			<p>
-				O próprio site do Saucedemo fornece os possíveis usuários e a senha de acesso.
-				Dessa forma, faz-se uma coleta desses valores, que são armazenados em listas:
+				The Saucedemo website itself provides the possible usernames and the access password.
+				Therefore, these values are collected and stored in lists:
 			</p>
 			<pre><code class="language-python">
-# coletando possíveis usuários
-texto_usernames = navegador.find_element(By.ID, 'login_credentials').text
-linhas = texto_usernames.split('\n')
-usernames = linhas[1:]
+# collecting possible usernames
+usernames_text = browser.find_element(By.ID, 'login_credentials').text
+lines = usernames_text.split('\n')
+usernames = lines[1:]
 usernames
 
-# coletando possíveis senhas 
-texto_senhas = navegador.find_element(By.CLASS_NAME, 'login_password').text
-linhas2 = texto_senhas.split('\n')
-senhas = linhas2[1:]
-senhas
+# collecting possible passwords
+passwords_text = browser.find_element(By.CLASS_NAME, 'login_password').text
+lines2 = passwords_text.split('\n')
+passwords = lines2[1:]
+passwords
 			</code></pre></br>
 			<p>
-				Seleciona-se o usuário aleatoriamente e realiza-se o login com esse usuário:
+				A user is selected at random, and the login is performed with that user:
 			</p>
 			<pre><code class="language-python">
-# preenchendo usuário e senha
-username_aleatorio = random.choice(usernames)
-senha_aleatoria = random.choice(senhas)
-navegador.find_element(By.ID, 'user-name').send_keys(username_aleatorio)
-navegador.find_element(By.ID, 'password').send_keys(senha_aleatoria)
+# filling in the username and password
+random_username = random.choice(usernames)
+random_password = random.choice(passwords)
+browser.find_element(By.ID, 'user-name').send_keys(random_username)
+browser.find_element(By.ID, 'password').send_keys(random_password)
 
-# clicando no botão de login
-navegador.find_element(By.ID, 'login-button').click()
+# clicking the login button
+browser.find_element(By.ID, 'login-button').click()
 			</code></pre></br>
 			<p>
-				Enquanto o usuário "standard_user" não é selecionado, o programa segue rodando o loop:
+				While the “standard_user” is not selected, the program keeps running the loop:
 			</p>
 			<pre><code class="language-python">
 while True:
-if username_aleatorio == 'locked_out_user':
-	navegador.get('https://www.saucedemo.com/')
-	username_aleatorio = random.choice(usernames)
-	senha_aleatoria = random.choice(senhas)
-	navegador.find_element(By.ID, 'user-name').send_keys(username_aleatorio)
-	navegador.find_element(By.ID, 'password').send_keys(senha_aleatoria)
-	navegador.find_element(By.ID, 'login-button').click()
-elif username_aleatorio in ['problem_user', 'performance_glitch_user', 'error_user', 'visual_user']:
-	navegador.find_element(By.ID, 'react-burger-menu-btn').click()
-	time.sleep(1)
-	navegador.find_element(By.ID, 'logout_sidebar_link').click()
-	username_aleatorio = random.choice(usernames)
-	senha_aleatoria = random.choice(senhas)
-	navegador.find_element(By.ID, 'user-name').send_keys(username_aleatorio)
-	navegador.find_element(By.ID, 'password').send_keys(senha_aleatoria)
-	navegador.find_element(By.ID, 'login-button').click()
-else:
-	break
+    if random_username == 'locked_out_user':
+        # if the user is locked out, refresh the page and choose new credentials
+        browser.get('https://www.saucedemo.com/')
+        random_username = random.choice(usernames)
+        random_password = random.choice(passwords)
+        browser.find_element(By.ID, 'user-name').send_keys(random_username)
+        browser.find_element(By.ID, 'password').send_keys(random_password)
+        browser.find_element(By.ID, 'login-button').click()
+    elif random_username in ['problem_user', 'performance_glitch_user', 'error_user', 'visual_user']:
+        # if the user is one of the problematic ones, log out and choose new credentials
+        browser.find_element(By.ID, 'react-burger-menu-btn').click()
+        time.sleep(1)
+        browser.find_element(By.ID, 'logout_sidebar_link').click()
+        random_username = random.choice(usernames)
+        random_password = random.choice(passwords)
+        browser.find_element(By.ID, 'user-name').send_keys(random_username)
+        browser.find_element(By.ID, 'password').send_keys(random_password)
+        browser.find_element(By.ID, 'login-button').click()
+    else:
+        # if the user is standard_user, break the loop and proceed
+        break
 			</code></pre></br>
 			<p>
-				Após logar com usuário padrão, escolhe-se aleatoriamente os produtos a serem colocados no carrinho:
+				After logging in with the standard user, products are randomly selected to be added to the cart:
 			</p>
 			<pre><code class="language-python">
-lista_itens = navegador.find_elements(By.CLASS_NAME, 'btn.btn_primary.btn_small.btn_inventory')
-num_itens = random.randint(1, len(lista_itens))
-itens = random.sample(lista_itens, num_itens)
-
-for item in itens:
-	item.click()
+# finding all product elements that can be added to the cart
+item_list = browser.find_elements(By.CLASS_NAME, 'btn.btn_primary.btn_small.btn_inventory')
+# randomly choosing the number of items to add to the cart
+num_items = random.randint(1, len(item_list))
+# selecting the items to be added
+items_to_add = random.sample(item_list, num_items)
+# adding the selected items to the cart
+for item in items_to_add:
+    item.click()
 			</code></pre></br>
 			<p>
-				Finalmente, é feito o checkout, o preenchimento dos dados e a finalização da compra:
+				Finally, the checkout is completed, the required information is filled in, and the purchase is finalized:
 			</p>
 			<pre><code class="language-python">
-# entrando no carrinho e fazendo o checkout
-navegador.find_element(By.CLASS_NAME, 'shopping_cart_link').click()
-navegador.find_element(By.ID, 'checkout').click()
+# going to the cart and proceeding to checkout
+browser.find_element(By.CLASS_NAME, 'shopping_cart_link').click()
+browser.find_element(By.ID, 'checkout').click()
 
-# preenchendo os dados do usuário
-navegador.find_element(By.ID, 'first-name').send_keys('primeiro nome')
-navegador.find_element(By.ID, 'last-name').send_keys('sobrenome')
-navegador.find_element(By.ID, 'postal-code').send_keys('123123123')
-navegador.find_element(By.ID, 'continue').click()
+# filling in user details
+browser.find_element(By.ID, 'first-name').send_keys('first name')
+browser.find_element(By.ID, 'last-name').send_keys('last name')
+browser.find_element(By.ID, 'postal-code').send_keys('123123123')
+browser.find_element(By.ID, 'continue').click()
 
-# finalizando a compra e retornando para o menu de produtos
-navegador.find_element(By.ID, 'finish').click()
-navegador.find_element(By.ID, 'back-to-products').click()
+# finalizing the purchase and returning to the products page
+browser.find_element(By.ID, 'finish').click()
+browser.find_element(By.ID, 'back-to-products').click()
 			</code></pre></br>
 
-			<h2>Simulação</h2>
-			<p>O vídeo abaixo apresenta uma simulação da compra no site, de forma automatizada:</p>
+			<h2>Simulation</h2>
+			<p>
+				The video below shows an automated simulation of the purchase on the site:
+			</p>
 			<video src="images/projetos/automacao-selenium/video.mp4" width="672" height="378" controls></video>
 
 		</section>
 		<!-- FIM DO BLOCO DE CONTEUDO -->
 		<ul class="actions">
-			<li><a href="portfolio.html" class="button icon solid fa-arrow-left">Voltar</a></li>
+			<li><a href="portfolio.html" class="button icon solid fa-arrow-left">Back</a></li>
 		</ul>
 	</div>
 
